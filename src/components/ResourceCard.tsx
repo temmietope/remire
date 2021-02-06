@@ -20,7 +20,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
     setEntity(resource);
     setDetails[extractDetails(entity)];
   }, details);
-
+  const extractType = (str) => str.split("/").slice(4, 5)[0];
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
@@ -33,7 +33,11 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
             {val.map((str, index) => {
               return (
                 <div>
-                  <P key={index}>{str}</P>
+                  {/* {console.log(str.split("/").slice(4, 5)[0].slice(0,-1))} */}
+                  {/* const subdomain = window.location.host.split(".").slice(0, -1)[0]; */}
+                  <P key={index} transform="capitalize">
+                    {`${extractType(str)} ${index + 1}`}{" "}
+                  </P>
                 </div>
               );
             })}

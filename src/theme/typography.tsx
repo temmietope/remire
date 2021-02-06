@@ -33,4 +33,5 @@ export const P = styled.p`
   font-family: "Nunito", sans-serif;
   font-weight: 400;
   color: #594a4e;
+  text-transform: ${(props) => props.transform && props.transform};
 `;

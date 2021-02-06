@@ -9,7 +9,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const roots = useSelector((state) => state.roots);
   const [showResources, setShowResources] = useState(false);
-
+  const [resource, setResource] = useState("");
   useEffect(() => {
     dispatch(fetchRoots());
   }, [dispatch]);
@@ -30,6 +30,7 @@ const Home = () => {
               onClick={async () => {
                 await dispatch(fetchResources(root));
                 setShowResources(true);
+                setResource(root);
               }}
             >
               <H2>{root}</H2>
@@ -37,7 +38,11 @@ const Home = () => {
           );
         })}
 
-      <Resources display={showResources} closeTab={closeTab} />
+      <Resources
+        display={showResources}
+        closeTab={closeTab}
+        resource={resource}
+      />
     </HomeWrapper>
   );
 };

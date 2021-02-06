@@ -131,6 +131,13 @@ export const ResourcesWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+  h1 {
+    text-transform: uppercase;
+    position: absolute;
+    top:1rem;
+    font-family: 'Poller One', cursive;
+  }
   button.close_btn {
     position: absolute;
     top: 1rem;

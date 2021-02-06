@@ -16,17 +16,11 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
     console.log(resource);
     setActive(!active);
   };
-  //
   useEffect(() => {
     setEntity(resource);
     setDetails[extractDetails(entity)];
   }, details);
-  // console.log(typeof [1, 2, 3]);
-  // console.log(typeof "hii");
 
-  // return `${<H4>{key}</H4>} : ${val.map((str, index)=>{
-  //   return <P key={index}>{str}</P>
-  // })}`
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
@@ -57,7 +51,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
 
   return (
     <Card key={resource.name} showMore={active}>
-      <H3>{resource.name}</H3>
+      <H3>{resource.name || resource.title}</H3>
       <div className="card__details">
         {details.map(([k, v]) => {
           return renderEntry(k, v);

@@ -10,6 +10,7 @@ import {
   FETCH_ROOTS,
   FETCH_ROOTS_FAILURE,
   FETCH_ROOTS_SUCCESS,
+  CLEAR_RESOURCE,
 } from "../constants";
 
 export default combineReducers({
@@ -69,6 +70,11 @@ export default combineReducers({
         return {
           isLoading: false,
           payload: action.payload,
+        };
+
+      case CLEAR_RESOURCE:
+        return {
+          payload: void 0,
         };
 
       default:

@@ -172,6 +172,12 @@ export const ResourcesDiv = styled.div`
   box-sizing: border-box;
   /* justify-content: center;
   align-items: center; */
+  ${(props) =>
+    props.quickView &&
+    css`
+      width: 50%;
+      }
+    `}
 `;
 
 export const ResourceCard = styled.div`
@@ -227,6 +233,11 @@ export const ResourceCard = styled.div`
         margin: 2rem 0;
         scroll-snap-type: y mandatory;
       }
+    `}
+  ${(props) =>
+    props.quickView &&
+    css`
+      /* height: 30rem; */
     `}
 `;
 

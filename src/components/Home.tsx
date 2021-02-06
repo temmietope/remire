@@ -1,4 +1,4 @@
-import { fetchResources, fetchRoots } from "../actions";
+import { fetchResources, fetchRoots, clearQuickView } from "../actions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HomeWrapper, RootCard } from "../theme/styles";
@@ -19,7 +19,10 @@ const Home = () => {
     ? document.body.classList.add("no-scroll")
     : document.body.classList.remove("no-scroll");
 
-  const closeTab = () => setShowResources(false);
+  const closeTab = () => {
+    setShowResources(false);
+    dispatch(clearQuickView());
+  };
   return (
     <HomeWrapper>
       {roots.payload &&

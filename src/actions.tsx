@@ -6,6 +6,7 @@ import {
   FETCH_RESOURCE,
   FETCH_RESOURCE_FAILURE,
   FETCH_RESOURCE_SUCCESS,
+  CLEAR_RESOURCE,
   FETCH_ROOTS,
   FETCH_ROOTS_FAILURE,
   FETCH_ROOTS_SUCCESS,
@@ -42,4 +43,8 @@ export const fetchResource = (url) => (dispatch) => {
     (resp) => dispatch({ type: FETCH_RESOURCE_SUCCESS, payload: resp }),
     (error) => dispatch({ type: FETCH_RESOURCE_FAILURE, payload: error })
   );
+};
+
+export const clearQuickView = () => (dispatch) => {
+  dispatch({ type: CLEAR_RESOURCE });
 };

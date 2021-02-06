@@ -7,13 +7,15 @@ import { fetchResource } from "../actions";
 
 interface Resource {
   resource: { [key: string]: any };
+  quickView: any;
 }
 
-const ResourceCard: FC<Resource> = ({ resource }) => {
+const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
   const detailsDiv = useRef(null);
   useEffect(() => {
     detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    !quickView && setDetails(extractDetails(resource));
+  }, [quickView]);
   const [cardHeader, setCardHeader] = useState(resource.name || resource.title);
   const [active, setActive] = useState(false);
   const [details, setDetails] = useState(extractDetails(resource));
@@ -42,6 +44,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
                       const res = await dispatch(fetchResource(str));
                       setDetails(extractDetails(res.payload));
                       setCardHeader(res.payload.name || res.payload.title);
+                      // quickView
                     }}
                   >
                     {`${extractType(str)} ${index + 1}`}{" "}

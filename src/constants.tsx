@@ -7,3 +7,4 @@ export const FETCH_RESOURCES_SUCCESS = "@@internal/FETCH_RESOURCES_SUCCESS";
 export const FETCH_RESOURCE = "@@internal/FETCH_RESOURCE";
 export const FETCH_RESOURCE_FAILURE = "@@internal/FETCH_RESOURCE_FAILURE";
 export const FETCH_RESOURCE_SUCCESS = "@@internal/FETCH_RESOURCE_SUCCESS";
+export const CLEAR_RESOURCE = "@@internal/CLEAR_RESOURCE";

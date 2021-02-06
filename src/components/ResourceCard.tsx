@@ -17,6 +17,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
 
   useEffect(() => {
     detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
+    !quickView && setCardHeader(resource.name || resource.title);
     !quickView && setDetails(extractDetails(resource));
   }, [quickView, cardHeader]);
   const [active, setActive] = useState(false);
@@ -26,7 +27,6 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     setActive(!active);
   };
   const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
-  console.log(details);
   const dateString = ["created, edited, release date"];
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {

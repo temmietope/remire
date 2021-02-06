@@ -160,18 +160,16 @@ export const ResourcesDiv = styled.div`
   justify-content: space-between;
   transition: all 500ms ease-in-out;
   align-items: flex-start;
+  border-radius: var(--border-radius);
   /* padding: 2rem; */
   height: fit-content;
-  overflow-y: hidden;
+  /* overflow-y: hidden;
   overflow-x: auto;
-  border-radius: var(--border-radius);
   scroll-snap-type: x mandatory;
   scroll-snap-points-x: repeat(100%);
   scroll-snap-type: mandatory;
   scroll-snap-destination: 100% 0%;
-  box-sizing: border-box;
-  /* justify-content: center;
-  align-items: center; */
+  box-sizing: border-box; */
   ${(props) =>
     props.quickView &&
     css`

@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "json-client": "^0.9.3",
@@ -27,7 +26,7 @@
   },
   "devDependencies": {
     "eslint-plugin-babel": "^5.3.0",
-    "react-scripts": "3.1.1"
+    "react-scripts": "^4.0.2"
   },
   "browserslist": {
     "production": [

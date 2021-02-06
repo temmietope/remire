@@ -1,7 +1,4 @@
-import classnames from "classnames";
 import { fetchResources, fetchRoots } from "../actions";
-import sentenceCase from "sentence-case";
-import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HomeWrapper, RootCard } from "../theme/styles";
@@ -10,9 +7,7 @@ import Resources from "../pages/Resources";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [tab, setTab] = useState(void 0);
   const roots = useSelector((state) => state.roots);
-  // const resources = useSelector((state) => state.resources);
   const [showResources, setShowResources] = useState(false);
 
   useEffect(() => {

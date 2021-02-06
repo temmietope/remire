@@ -135,8 +135,8 @@ export const ResourcesWrapper = styled.div`
   h1 {
     text-transform: uppercase;
     position: absolute;
-    top:1rem;
-    font-family: 'Poller One', cursive;
+    top: 1rem;
+    font-family: "Poller One", cursive;
   }
   button.close_btn {
     position: absolute;
@@ -203,6 +203,14 @@ export const ResourceCard = styled.div`
       display: flex;
       p {
         margin-left: 1rem;
+      }
+    }
+  }
+  .array__list {
+    p {
+      cursor: pointer;
+      :hover {
+        text-decoration: underline;
       }
     }
   }

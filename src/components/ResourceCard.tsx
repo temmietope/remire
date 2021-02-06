@@ -1,41 +1,49 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { Button, ResourceCard as Card } from "../theme/styles";
 import { H3, H4, P } from "../theme/typography";
 import { extractDetails } from "../utils/functions/extractDetails";
+import { useDispatch } from "react-redux";
+import { fetchResource } from "../actions";
 
 interface Resource {
   resource: { [key: string]: any };
 }
 
 const ResourceCard: FC<Resource> = ({ resource }) => {
-  const [entity, setEntity] = useState(resource);
-  const list = extractDetails(entity);
+  const detailsDiv = useRef(null);
+  useEffect(() => {
+    detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  const [cardHeader, setCardHeader] = useState(resource.name || resource.title);
   const [active, setActive] = useState(false);
-  const [details, setDetails] = useState(list);
+  const [details, setDetails] = useState(extractDetails(resource));
+  const dispatch = useDispatch();
   const showMore = () => {
-    console.log(resource);
     setActive(!active);
   };
-  useEffect(() => {
-    setEntity(resource);
-    setDetails[extractDetails(entity)];
-  }, details);
-  const extractType = (str) => str.split("/").slice(4, 5)[0];
+  const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
+
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
         return null;
       }
-      const see = (
+      return (
         <li>
           <H4>{key}</H4>:
           <div className="array__list">
             {val.map((str, index) => {
               return (
                 <div>
-                  {/* {console.log(str.split("/").slice(4, 5)[0].slice(0,-1))} */}
-                  {/* const subdomain = window.location.host.split(".").slice(0, -1)[0]; */}
-                  <P key={index} transform="capitalize">
+                  <P
+                    key={index}
+                    transform="capitalize"
+                    onClick={async () => {
+                      const res = await dispatch(fetchResource(str));
+                      setDetails(extractDetails(res.payload));
+                      setCardHeader(res.payload.name || res.payload.title);
+                    }}
+                  >
                     {`${extractType(str)} ${index + 1}`}{" "}
                   </P>
                 </div>
@@ -44,7 +52,6 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
           </div>
         </li>
       );
-      return see;
     }
     return (
       <li key={key}>
@@ -55,8 +62,8 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
 
   return (
     <Card key={resource.name} showMore={active}>
-      <H3>{resource.name || resource.title}</H3>
-      <div className="card__details">
+      <H3>{cardHeader}</H3>
+      <div className="card__details" ref={detailsDiv}>
         {details.map(([k, v]) => {
           return renderEntry(k, v);
         })}

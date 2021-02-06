@@ -18,3 +18,9 @@ export const getResources = async (root) => {
   const data = await res.json();
   return data.results;
 };
+
+export const getResource = async (url) => {
+  const res = await fetch(`${url}`);
+  const data = await res.json();
+  return data;
+};

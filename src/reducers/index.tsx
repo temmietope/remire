@@ -4,6 +4,9 @@ import {
   FETCH_RESOURCES,
   FETCH_RESOURCES_FAILURE,
   FETCH_RESOURCES_SUCCESS,
+  FETCH_RESOURCE,
+  FETCH_RESOURCE_FAILURE,
+  FETCH_RESOURCE_SUCCESS,
   FETCH_ROOTS,
   FETCH_ROOTS_FAILURE,
   FETCH_ROOTS_SUCCESS,
@@ -42,6 +45,27 @@ export default combineReducers({
         };
 
       case FETCH_RESOURCES_SUCCESS:
+        return {
+          isLoading: false,
+          payload: action.payload,
+        };
+
+      default:
+        return state;
+    }
+  },
+  resource: (state = initialState.resource, action) => {
+    switch (action.type) {
+      case FETCH_RESOURCE:
+        return { isLoading: true };
+
+      case FETCH_RESOURCE_FAILURE:
+        return {
+          isLoading: false,
+          error: action.payload,
+        };
+
+      case FETCH_RESOURCE_SUCCESS:
         return {
           isLoading: false,
           payload: action.payload,

@@ -5,13 +5,16 @@ import ResourceCard from "../components/ResourceCard";
 
 interface Resource {
   display: boolean;
+  closeTab: any;
 }
-const Resources: FC<Resource> = ({ display }) => {
+const Resources: FC<Resource> = ({ display, closeTab }) => {
   const resources = useSelector((state) => state.resources);
   const lightbox = useRef(null);
-
   return (
     <ResourcesWrapper display={display}>
+      <button className="close_btn" onClick={() => closeTab()}>
+        X
+      </button>
       <ResourcesDiv ref={lightbox}>
         {/* <SwipeableViews enableMouseEvents> */}
         {/* <div style={Object.assign({}, styles.slide, styles.slide1)}>

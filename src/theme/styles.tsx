@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { createGlobalStyle } from "styled-components";
 
@@ -131,15 +131,30 @@ export const ResourcesWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  button.close_btn {
+    position: absolute;
+    top: 1rem;
+    right: 5%;
+    font-size: 2rem;
+    color: #ff8ba7;
+    padding: 0.5% 1%;
+    border: none;
+    outline: none;
+    background-color: #fffffe;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+  }
 `;
 
 export const ResourcesDiv = styled.div`
-  width: 50%;
+  width: 30%;
   /* height: 80%; */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   /* padding: 2rem; */
+  height: fit-content;
+  overflow-y: hidden;
   overflow-x: auto;
   border-radius: var(--border-radius);
   scroll-snap-type: x mandatory;
@@ -153,7 +168,7 @@ export const ResourcesDiv = styled.div`
 
 export const ResourceCard = styled.div`
   min-width: 100% !important;
-  height: 20rem;
+  height: 10rem;
   background-color: #fffffe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   border-radius: var(--border-radius);
@@ -170,9 +185,33 @@ export const ResourceCard = styled.div`
     text-transform: uppercase;
   }
   :hover {
-    box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4); */
     transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
   }
+  .card__details {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    li {
+      display: flex;
+      p {
+        margin-left: 1rem;
+      }
+    }
+  }
+  ${(props) =>
+    props.showMore &&
+    css`
+      height: 25rem;
+      .card__details {
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+        overflow: auto;
+        margin: 2rem 0;
+        scroll-snap-type: y mandatory;
+      }
+    `}
 `;
 
 export const Button = styled.button`

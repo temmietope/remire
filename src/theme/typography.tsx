@@ -15,7 +15,14 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-  font-size: 1.3rem;
+  font-size: 1.35rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  color: #33272a;
+`;
+
+export const H4 = styled.h4`
+  font-size: 1.15rem;
   font-family: "Nunito", sans-serif;
   font-weight: 700;
   color: #33272a;

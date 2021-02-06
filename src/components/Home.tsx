@@ -19,6 +19,7 @@ const Home = () => {
     ? document.body.classList.add("no-scroll")
     : document.body.classList.remove("no-scroll");
 
+  const closeTab = () => setShowResources(false);
   return (
     <HomeWrapper>
       {roots.payload &&
@@ -36,7 +37,7 @@ const Home = () => {
           );
         })}
 
-      <Resources display={showResources} />
+      <Resources display={showResources} closeTab={closeTab} />
     </HomeWrapper>
   );
 };

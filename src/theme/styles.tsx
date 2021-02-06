@@ -158,6 +158,7 @@ export const ResourcesDiv = styled.div`
   /* height: 80%; */
   display: flex;
   justify-content: space-between;
+  transition: all 500ms ease-in-out;
   align-items: flex-start;
   /* padding: 2rem; */
   height: fit-content;

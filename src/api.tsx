@@ -20,7 +20,8 @@ export const getResources = async (root) => {
 };
 
 export const getResource = async (url) => {
-  const res = await fetch(`${url}`);
+  const base = url.replace("http", "https");
+  const res = await fetch(`${base}`);
   const data = await res.json();
   return data;
 };

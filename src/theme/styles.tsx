@@ -143,6 +143,9 @@ export const ResourcesDiv = styled.div`
   overflow-x: auto;
   border-radius: var(--border-radius);
   scroll-snap-type: x mandatory;
+  scroll-snap-points-x: repeat(100%);
+  scroll-snap-type: mandatory;
+  scroll-snap-destination: 100% 0%;
   box-sizing: border-box;
   /* justify-content: center;
   align-items: center; */

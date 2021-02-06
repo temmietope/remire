@@ -26,7 +26,7 @@ const details_wanted = [
   "opening_crawl",
   "director",
   "producer",
-  "releases_date",
+  "release_date",
   "species",
   "planets",
   "model",

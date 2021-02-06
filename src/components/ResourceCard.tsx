@@ -4,6 +4,7 @@ import { H3, H4, P } from "../theme/typography";
 import { extractDetails } from "../utils/functions/extractDetails";
 import { useDispatch } from "react-redux";
 import { fetchResource } from "../actions";
+import { formatDate } from "../utils/functions/formatDate";
 
 interface Resource {
   resource: { [key: string]: any };
@@ -12,11 +13,12 @@ interface Resource {
 
 const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
   const detailsDiv = useRef(null);
+  const [cardHeader, setCardHeader] = useState(resource.name || resource.title);
+
   useEffect(() => {
     detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
     !quickView && setDetails(extractDetails(resource));
-  }, [quickView]);
-  const [cardHeader, setCardHeader] = useState(resource.name || resource.title);
+  }, [quickView, cardHeader]);
   const [active, setActive] = useState(false);
   const [details, setDetails] = useState(extractDetails(resource));
   const dispatch = useDispatch();
@@ -24,7 +26,8 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     setActive(!active);
   };
   const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
-
+  console.log(details);
+  const dateString = ["created, edited, release date"];
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
@@ -47,7 +50,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
                       // quickView
                     }}
                   >
-                    {`${extractType(str)} ${index + 1}`}{" "}
+                    {`${extractType(str)} ${index + 1}`}
                   </P>
                 </div>
               );
@@ -58,7 +61,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     }
     return (
       <li key={key}>
-        <H4>{key}</H4>:<P>{val}</P>
+        <H4>{key}</H4>:<P>{dateString.includes(key) ? formatDate(val) : val}</P>
       </li>
     );
   };

@@ -3,9 +3,11 @@ import { ResourcesDiv, ResourcesWrapper } from "../theme/styles";
 import { useSelector, useDispatch } from "react-redux";
 import ResourceCard from "../components/ResourceCard";
 import { H1 } from "../theme/typography";
-import SwipeableViews from "react-swipeable-views";
 import { clearQuickView } from "../actions";
+import SwipeableViews from "react-swipeable-views";
+import { bindKeyboard } from "react-swipeable-views-utils";
 
+const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 interface Resource {
   display: boolean;
   closeTab: any;
@@ -41,7 +43,11 @@ const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
       )}
       {newView ? "" : <H1>{resource}</H1>}
       <ResourcesDiv quickView={newView}>
-        <SwipeableViews enableMouseEvents disabled={newView} resistance={true}>
+        <BindKeyboardSwipeableViews
+          enableMouseEvents
+          disabled={newView}
+          resistance={true}
+        >
           {resources?.payload?.map((resource) => {
             return (
               <ResourceCard
@@ -51,7 +57,7 @@ const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
               />
             );
           })}
-        </SwipeableViews>
+        </BindKeyboardSwipeableViews>
       </ResourcesDiv>
     </ResourcesWrapper>
   );

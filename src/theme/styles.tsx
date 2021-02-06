@@ -139,26 +139,30 @@ export const ResourcesDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 2rem;
+  /* padding: 2rem; */
   overflow-x: auto;
+  border-radius: var(--border-radius);
+  scroll-snap-type: x mandatory;
   box-sizing: border-box;
   /* justify-content: center;
   align-items: center; */
 `;
 
 export const ResourceCard = styled.div`
-  min-width: 80% !important;
+  min-width: 100% !important;
   height: 20rem;
   background-color: #fffffe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   border-radius: var(--border-radius);
-  margin-left: 1rem;
+  margin: 0 2%;
   padding: 4%;
+  box-sizing: border-box;
   transition: all 500ms ease-in-out;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   position: relative;
+  scroll-snap-align: start;
   h3 {
     text-transform: uppercase;
   }

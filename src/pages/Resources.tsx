@@ -8,6 +8,7 @@ import {
 import { useSelector } from "react-redux";
 import { H3 } from "../theme/typography";
 // import useOutsideClicks from "../utils/customHooks/useOutsideClick";
+// import SwipeableViews from "react-swipeable-views";
 
 interface Resource {
   display: boolean;
@@ -15,21 +16,53 @@ interface Resource {
 const Resources: FC<Resource> = ({ display }) => {
   const resources = useSelector((state) => state.resources);
   const lightbox = useRef(null);
-  // console.log(lightbox);
-  // const [show, setShow] = useState(display);
-  // useOutsideClicks(lightbox, () => console.log(display));
-  // console.log(show)
+
+  // const styles = {
+  //   slide: {
+  //     padding: 15,
+  //     minHeight: 100,
+  //     color: "#fff",
+  //   },
+  //   slide1: {
+  //     backgroundColor: "#FEA900",
+  //   },
+  //   slide2: {
+  //     backgroundColor: "#B3DC4A",
+  //   },
+  //   slide3: {
+  //     backgroundColor: "#6AC0FF",
+  //   },
+  // };
   return (
     <ResourcesWrapper display={display}>
       <ResourcesDiv ref={lightbox}>
-        {resources?.payload?.map((resource) => {
+        {/* <SwipeableViews enableMouseEvents> */}
+          {/* <div style={Object.assign({}, styles.slide, styles.slide1)}>
+            slide n°1
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide2)}>
+            slide n°2
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide3)}>
+            slide n°3
+          </div> */}
+          {resources?.payload?.map((resource) => {
+            return (
+              <ResourceCard key={resource.name}>
+                <H3>{resource.name}</H3>
+                <Button>View More!</Button>
+              </ResourceCard>
+            );
+          })}
+        {/* </SwipeableViews> */}
+        {/* {resources?.payload?.map((resource) => {
           return (
             <ResourceCard key={resource.name}>
               <H3>{resource.name}</H3>
               <Button>View More!</Button>
             </ResourceCard>
           );
-        })}
+        })} */}
       </ResourcesDiv>
     </ResourcesWrapper>
   );

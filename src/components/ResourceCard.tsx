@@ -38,6 +38,8 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
       history[history.length - 1].name || history[history.length - 1].title
     );
     setDetails(extractDetails(history[history.length - 1]));
+  }, [history]);
+  useEffect(() => {
     let existingLikedArray = JSON.parse(
       localStorage.getItem("likedArray") || "{}"
     );
@@ -45,7 +47,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
       existingLikedArray = [];
     }
     setLikedArray(existingLikedArray);
-  }, [history]);
+  }, [likedArray]);
   const showMore = () => {
     setActive(!active);
   };

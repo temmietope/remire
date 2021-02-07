@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { HomeWrapper, RootCard } from "../theme/styles";
 import { H2 } from "../theme/typography";
 import Resources from "../pages/Resources";
+import { Loader } from "./Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,10 @@ const Home = () => {
 
   return (
     <HomeWrapper>
-      {roots.payload &&
+      {roots.isLoading ? (
+        <Loader />
+      ) : (
+        roots.payload &&
         keys.map((root) => {
           return (
             <RootCard
@@ -72,11 +76,11 @@ const Home = () => {
                     likedArray.includes(root) ? "fas" : "far"
                   } fa-heart`}
                 ></i>
-                {/* <i className="far fa-heart"></i> */}
               </button>
             </RootCard>
           );
-        })}
+        })
+      )}
 
       <Resources
         display={showResources}

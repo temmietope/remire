@@ -8,9 +8,10 @@ import { formatDate } from "../utils/functions/formatDate";
 
 interface Resource {
   resource: { [key: string]: any };
+  quickView: boolean;
 }
 
-const ResourceCard: FC<Resource> = ({ resource }) => {
+const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
   const detailsDiv = useRef(null);
   const dispatch = useDispatch();
   const dateString = ["Created", "Edited", "Release Date"];
@@ -103,7 +104,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
   };
 
   return (
-    <Card key={resource.name} showMore={active}>
+    <Card key={resource.name} showMore={active} quickView={quickView}>
       {history.length > 1 && (
         <button
           className="back"

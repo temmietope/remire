@@ -34,6 +34,7 @@ const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
           enableMouseEvents
           disabled={newView}
           resistance={true}
+          slideClassName='swipe-card'
         >
           {resources?.payload?.map((resource) => {
             return (

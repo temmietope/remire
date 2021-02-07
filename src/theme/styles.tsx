@@ -64,6 +64,15 @@ export const Body = styled.div`
   height: 100%;
 `;
 
+export const Loading = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: var(--navHeight);
+  left: 0;
+  display: grid;
+  place-content: center;
+`;
 export const HomeWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -136,13 +145,13 @@ export const RootCard = styled.div`
       /* color: ${(props) => (props.liked ? "red" : "#594a4e")}; */
     }
     i.fas {
-      color: red;
+      color: #ff8ba7;
     }
   }
   ${(props) =>
     props.liked &&
     css`
-      background: red;
+      background: #ff8ba7;
     `}
 `;
 
@@ -187,13 +196,11 @@ export const ResourcesWrapper = styled.div`
 
 export const ResourcesDiv = styled.div`
   width: 30%;
-  /* height: 80%; */
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   transition: all 500ms ease-in-out;
   align-items: flex-start;
   border-radius: var(--border-radius);
-  /* padding: 2rem; */
   height: fit-content;
   overflow-y: hidden;
   overflow-x: auto;
@@ -201,11 +208,18 @@ export const ResourcesDiv = styled.div`
   scroll-snap-points-x: repeat(100%);
   scroll-snap-type: mandatory;
   scroll-snap-destination: 100% 0%;
-  box-sizing: border-box;
+  box-sizing: border-box; */
+  .swipe-card {
+    padding: 2%;
+  }
   ${(props) =>
     props.quickView &&
     css`
       width: 50%;
+      overflow-x: hidden !important;
+      .swipe-card{
+        padding: 7%;
+      }
       }
     `}
 `;
@@ -216,7 +230,7 @@ export const ResourceCard = styled.div`
   background-color: #fffffe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   border-radius: var(--border-radius);
-  margin: 0 2%;
+  /* margin: 0 2%; */
   padding: 4%;
   box-sizing: border-box;
   transition: all 500ms ease-in-out;
@@ -293,7 +307,7 @@ export const ResourceCard = styled.div`
   ${(props) =>
     props.showMore &&
     css`
-      height: 25rem;
+      height: 23rem;
       .card__details {
         opacity: 1;
         visibility: visible;
@@ -301,6 +315,33 @@ export const ResourceCard = styled.div`
         overflow: auto;
         margin: 2rem 0;
         scroll-snap-type: y mandatory;
+        margin: 3% 0;
+      }
+    `}
+
+  ${(props) =>
+    props.quickView &&
+    css`
+      ::before,
+      ::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        background: #fff;
+        transition: 0.3s;
+        z-index: -1;
+      }
+      :hover:before {
+        transform: rotate(10deg);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      }
+      :hover:after {
+        transform: rotate(5deg);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
       }
     `}
 `;

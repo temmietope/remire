@@ -198,10 +198,24 @@ export const ResourceCard = styled.div`
   h3 {
     text-transform: uppercase;
   }
-  :hover {
-    /* box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4); */
-    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  button.favorite {
+    width: fit-content;
+    background: none;
+    border: none;
+    outline: none;
+    transition: all 0.2s;
+    :hover {
+      transform: scale(1.1);
+    }
+    i {
+      color: #594a4e;
+      /* color: ${(props) => (props.liked ? "red" : "#594a4e")}; */
+    }
+    i.fas {
+      color: red;
+    }
   }
+
   .card__details {
     opacity: 0;
     visibility: hidden;
@@ -219,7 +233,7 @@ export const ResourceCard = styled.div`
       cursor: pointer;
       :hover {
         text-decoration: underline;
-       text-decoration-color:#ff8ba7;
+        text-decoration-color: #ff8ba7;
         transform: scale(1.05);
       }
     }

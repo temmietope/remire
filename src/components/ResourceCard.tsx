@@ -23,11 +23,13 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
   const [details, setDetails] = useState(
     extractDetails(history[history.length - 1])
   );
-
   const goBack = () => {
     const newArray = history.slice(0, -1);
     setHistory(newArray);
   };
+  const [likedArray, setLikedArray] = useState([]);
+
+  const id = history[history.length - 1].url.split("/").slice(4, 6).join("/");
 
   //LIFECYCLE
   useEffect(() => {
@@ -36,9 +38,31 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
       history[history.length - 1].name || history[history.length - 1].title
     );
     setDetails(extractDetails(history[history.length - 1]));
+    let existingLikedArray = JSON.parse(
+      localStorage.getItem("likedArray") || "{}"
+    );
+    if (Object.keys(existingLikedArray).length === 0) {
+      existingLikedArray = [];
+    }
+    setLikedArray(existingLikedArray);
   }, [history]);
   const showMore = () => {
     setActive(!active);
+  };
+  const toggleLike = (id) => {
+    let existingLikedArray = likedArray;
+
+    if (existingLikedArray.includes(id)) {
+      existingLikedArray = existingLikedArray.filter((string) => string !== id);
+    } else existingLikedArray.push(id);
+
+    setLikedArray(existingLikedArray);
+    localStorage.setItem("likedArray", JSON.stringify(existingLikedArray));
+
+    // if(existingLikedArray){
+    //   if(liked){
+    //     existingLikedArray.push(id)
+    //   }
   };
 
   //FUNCTIONS
@@ -54,9 +78,8 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
           <div className="array__list">
             {val.map((str, index) => {
               return (
-                <div>
+                <div key={index}>
                   <P
-                    key={index}
                     transform="capitalize"
                     onClick={async () => {
                       const res = await dispatch(fetchResource(str));
@@ -98,7 +121,12 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
           return renderEntry(k, v);
         })}
       </div>
-
+      <button onClick={() => toggleLike(id)} className="favorite">
+        {/* <i className={`${liked ? "fas" : "far"} fa-heart`}></i> */}
+        <i
+          className={`${likedArray.includes(id) ? "fas" : "far"} fa-heart`}
+        ></i>
+      </button>
       <Button onClick={() => showMore()}>
         {active ? "Show Less" : "View More!"}
       </Button>

@@ -17,7 +17,7 @@ const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
   const [newView, setNewView] = useState(quickView.payload ? true : false);
   useEffect(() => {
     setNewView(quickView.payload ? true : false);
-  }, [quickView]);
+  }, [quickView, newView]);
   return (
     <ResourcesWrapper display={display}>
       <button

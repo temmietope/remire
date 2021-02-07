@@ -10,9 +10,21 @@ const Home = () => {
   const roots = useSelector((state) => state.roots);
   const [showResources, setShowResources] = useState(false);
   const [resource, setResource] = useState("");
+  const [likedArray, setLikedArray] = useState(
+    JSON.parse(localStorage.getItem("likedArray") || "[]")
+  );
+  const [triggered, setTriggered] = useState(false);
+  const getAllLiked = () => {
+    let localArray = JSON.parse(localStorage.getItem("likedArray") || "[]");
+    setLikedArray(localArray);
+  };
+
   useEffect(() => {
     dispatch(fetchRoots());
   }, [dispatch]);
+  useEffect(() => {
+    getAllLiked();
+  }, [triggered]);
 
   const keys = Object.keys(roots.payload || {});
   showResources
@@ -23,6 +35,17 @@ const Home = () => {
     setShowResources(false);
     dispatch(clearQuickView());
   };
+
+  const toggleLike = (type) => {
+    let existingLikedArray = likedArray;
+    if (likedArray.includes(type)) {
+      existingLikedArray = existingLikedArray.filter((val) => val !== type);
+    } else existingLikedArray.push(type);
+    localStorage.setItem("likedArray", JSON.stringify(existingLikedArray));
+    setLikedArray(existingLikedArray);
+    setTriggered(!triggered);
+  };
+
   return (
     <HomeWrapper>
       {roots.payload &&
@@ -37,6 +60,20 @@ const Home = () => {
               }}
             >
               <H2>{root}</H2>
+              <button
+                className="favorite"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleLike(root);
+                }}
+              >
+                <i
+                  className={`${
+                    likedArray.includes(root) ? "fas" : "far"
+                  } fa-heart`}
+                ></i>
+                {/* <i className="far fa-heart"></i> */}
+              </button>
             </RootCard>
           );
         })}

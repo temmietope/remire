@@ -114,6 +114,36 @@ export const RootCard = styled.div`
     transform: rotate(5deg);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
+  button {
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+    i {
+      font-size: 2rem;
+    }
+  }
+  .favorite {
+    width: fit-content;
+    background: none;
+    border: none;
+    outline: none;
+    transition: all 0.2s;
+    :hover {
+      transform: scale(1.1);
+    }
+    i {
+      color: #594a4e;
+      /* color: ${(props) => (props.liked ? "red" : "#594a4e")}; */
+    }
+    i.fas {
+      color: red;
+    }
+  }
+  ${(props) =>
+    props.liked &&
+    css`
+      background: red;
+    `}
 `;
 
 export const ResourcesWrapper = styled.div`

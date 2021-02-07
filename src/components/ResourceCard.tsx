@@ -38,7 +38,7 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
       history[history.length - 1].name || history[history.length - 1].title
     );
     setDetails(extractDetails(history[history.length - 1]));
-  }, [history]);
+  }, [history, details, cardHeader]);
   useEffect(() => {
     let existingLikedArray = JSON.parse(
       localStorage.getItem("likedArray") || "{}"
@@ -60,11 +60,6 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
 
     setLikedArray(existingLikedArray);
     localStorage.setItem("likedArray", JSON.stringify(existingLikedArray));
-
-    // if(existingLikedArray){
-    //   if(liked){
-    //     existingLikedArray.push(id)
-    //   }
   };
 
   //FUNCTIONS
@@ -124,7 +119,6 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
         })}
       </div>
       <button onClick={() => toggleLike(id)} className="favorite">
-        {/* <i className={`${liked ? "fas" : "far"} fa-heart`}></i> */}
         <i
           className={`${likedArray.includes(id) ? "fas" : "far"} fa-heart`}
         ></i>

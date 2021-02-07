@@ -143,11 +143,13 @@ export const ResourcesWrapper = styled.div`
     top: 1rem;
     right: 5%;
     font-size: 2rem;
-    color: #ff8ba7;
+    /* color: #ff8ba7; */
+    color: #33272a;
     padding: 0.5% 1%;
     border: none;
     outline: none;
-    background-color: #fffffe;
+    /* background-color: #fffffe; */
+    background-color: transparent;
     box-sizing: border-box;
     border-radius: var(--border-radius);
   }
@@ -213,9 +215,12 @@ export const ResourceCard = styled.div`
   }
   .array__list {
     p {
+      transition: all 0.1s;
       cursor: pointer;
       :hover {
         text-decoration: underline;
+       text-decoration-color:#ff8ba7;
+        transform: scale(1.05);
       }
     }
   }

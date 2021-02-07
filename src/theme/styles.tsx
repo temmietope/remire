@@ -163,13 +163,13 @@ export const ResourcesDiv = styled.div`
   border-radius: var(--border-radius);
   /* padding: 2rem; */
   height: fit-content;
-  /* overflow-y: hidden;
+  overflow-y: hidden;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-snap-points-x: repeat(100%);
   scroll-snap-type: mandatory;
   scroll-snap-destination: 100% 0%;
-  box-sizing: border-box; */
+  box-sizing: border-box;
   ${(props) =>
     props.quickView &&
     css`

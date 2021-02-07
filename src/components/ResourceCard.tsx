@@ -27,14 +27,14 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     setActive(!active);
   };
   const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
-  const dateString = ["created, edited, release date"];
+  const dateString = ["Created", "Edited"];
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
         return null;
       }
       return (
-        <li>
+        <li key={key}>
           <H4>{key}</H4>:
           <div className="array__list">
             {val.map((str, index) => {
@@ -61,6 +61,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     }
     return (
       <li key={key}>
+        {dateString.includes(key)&&console.log(key)}
         <H4>{key}</H4>:<P>{dateString.includes(key) ? formatDate(val) : val}</P>
       </li>
     );

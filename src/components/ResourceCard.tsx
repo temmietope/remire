@@ -3,31 +3,46 @@ import { Button, ResourceCard as Card } from "../theme/styles";
 import { H3, H4, P } from "../theme/typography";
 import { extractDetails } from "../utils/functions/extractDetails";
 import { useDispatch } from "react-redux";
-import { fetchResource } from "../actions";
+import { fetchResource, clearQuickView } from "../actions";
 import { formatDate } from "../utils/functions/formatDate";
 
 interface Resource {
   resource: { [key: string]: any };
-  quickView: any;
 }
 
-const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
+const ResourceCard: FC<Resource> = ({ resource }) => {
   const detailsDiv = useRef(null);
-  const [cardHeader, setCardHeader] = useState(resource.name || resource.title);
+  const dispatch = useDispatch();
+  const dateString = ["Created", "Edited", "Release Date"];
 
+  //INTERNAL STATE
+  //show card details
+  const [active, setActive] = useState(false);
+  const [cardHeader, setCardHeader] = useState("");
+  const [history, setHistory] = useState([resource]);
+  const [details, setDetails] = useState(
+    extractDetails(history[history.length - 1])
+  );
+
+  const goBack = () => {
+    const newArray = history.slice(0, -1);
+    setHistory(newArray);
+  };
+
+  //LIFECYCLE
   useEffect(() => {
     detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
-    !quickView && setCardHeader(resource.name || resource.title);
-    !quickView && setDetails(extractDetails(resource));
-  }, [quickView, cardHeader]);
-  const [active, setActive] = useState(false);
-  const [details, setDetails] = useState(extractDetails(resource));
-  const dispatch = useDispatch();
+    setCardHeader(
+      history[history.length - 1].name || history[history.length - 1].title
+    );
+    setDetails(extractDetails(history[history.length - 1]));
+  }, [history]);
   const showMore = () => {
     setActive(!active);
   };
+
+  //FUNCTIONS
   const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
-  const dateString = ["Created", "Edited"];
   const renderEntry = (key, val) => {
     if (Array.isArray(val)) {
       if (!val.length) {
@@ -45,9 +60,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
                     transform="capitalize"
                     onClick={async () => {
                       const res = await dispatch(fetchResource(str));
-                      setDetails(extractDetails(res.payload));
-                      setCardHeader(res.payload.name || res.payload.title);
-                      // quickView
+                      setHistory([...history, res.payload]);
                     }}
                   >
                     {`${extractType(str)} ${index + 1}`}
@@ -61,7 +74,6 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
     }
     return (
       <li key={key}>
-        {dateString.includes(key)&&console.log(key)}
         <H4>{key}</H4>:<P>{dateString.includes(key) ? formatDate(val) : val}</P>
       </li>
     );
@@ -69,6 +81,17 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
 
   return (
     <Card key={resource.name} showMore={active}>
+      {history.length > 1 && (
+        <button
+          className="back"
+          onClick={() => {
+            history.length === 2 && dispatch(clearQuickView());
+            goBack();
+          }}
+        >
+          Back
+        </button>
+      )}
       <H3>{cardHeader}</H3>
       <div className="card__details" ref={detailsDiv}>
         {details.map(([k, v]) => {

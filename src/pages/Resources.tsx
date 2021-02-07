@@ -1,9 +1,8 @@
 import React, { FC, useState, useEffect } from "react";
 import { ResourcesDiv, ResourcesWrapper } from "../theme/styles";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ResourceCard from "../components/ResourceCard";
 import { H1 } from "../theme/typography";
-import { clearQuickView } from "../actions";
 import SwipeableViews from "react-swipeable-views";
 import { bindKeyboard } from "react-swipeable-views-utils";
 
@@ -13,7 +12,6 @@ interface Resource {
   closeTab: any;
 }
 const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
-  const dispatch = useDispatch();
   const resources = useSelector((state) => state.resources);
   const quickView = useSelector((state) => state.resource);
   const [newView, setNewView] = useState(quickView.payload ? true : false);
@@ -22,25 +20,14 @@ const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
   }, [quickView]);
   return (
     <ResourcesWrapper display={display}>
-      {newView ? (
-        <button
-          className="close_btn"
-          onClick={() => {
-            dispatch(clearQuickView());
-          }}
-        >
-          {`<<< Back`}
-        </button>
-      ) : (
-        <button
-          className="close_btn"
-          onClick={() => {
-            closeTab();
-          }}
-        >
-          X
-        </button>
-      )}
+      <button
+        className="close_btn"
+        onClick={() => {
+          closeTab();
+        }}
+      >
+        X
+      </button>
       {newView ? "" : <H1>{resource}</H1>}
       <ResourcesDiv quickView={newView}>
         <BindKeyboardSwipeableViews

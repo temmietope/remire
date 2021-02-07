@@ -219,6 +219,28 @@ export const ResourceCard = styled.div`
       }
     }
   }
+
+  button.back {
+    background-color: #fffffe;
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    color: #ff8ba7;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    position: absolute;
+    top: 1rem;
+    right: 5%;
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    /* 
+    font-size: 2rem;
+    
+    padding: 0.5% 1%;
+   
+    */
+  }
+
   ${(props) =>
     props.showMore &&
     css`
@@ -231,11 +253,6 @@ export const ResourceCard = styled.div`
         margin: 2rem 0;
         scroll-snap-type: y mandatory;
       }
-    `}
-  ${(props) =>
-    props.quickView &&
-    css`
-      /* height: 30rem; */
     `}
 `;
 

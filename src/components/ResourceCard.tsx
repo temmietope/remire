@@ -28,7 +28,13 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
     setHistory(newArray);
   };
   const [likedArray, setLikedArray] = useState([]);
-
+  const [triggered, setTriggered] = useState(false);
+  const getAllLiked = () => {
+    let localArray = JSON.parse(
+      localStorage.getItem("individualLikedArray") || "[]"
+    );
+    setLikedArray(localArray);
+  };
   const id = history[history.length - 1].url.split("/").slice(4, 6).join("/");
 
   //LIFECYCLE
@@ -38,28 +44,25 @@ const ResourceCard: FC<Resource> = ({ resource }) => {
       history[history.length - 1].name || history[history.length - 1].title
     );
     setDetails(extractDetails(history[history.length - 1]));
-  }, [history, details, cardHeader]);
+  }, [history]);
+
   useEffect(() => {
-    let existingLikedArray = JSON.parse(
-      localStorage.getItem("likedArray") || "{}"
-    );
-    if (Object.keys(existingLikedArray).length === 0) {
-      existingLikedArray = [];
-    }
-    setLikedArray(existingLikedArray);
-  }, [likedArray]);
+    getAllLiked();
+  }, [triggered]);
   const showMore = () => {
     setActive(!active);
   };
   const toggleLike = (id) => {
     let existingLikedArray = likedArray;
-
-    if (existingLikedArray.includes(id)) {
-      existingLikedArray = existingLikedArray.filter((string) => string !== id);
+    if (likedArray.includes(id)) {
+      existingLikedArray = existingLikedArray.filter((val) => val !== id);
     } else existingLikedArray.push(id);
-
+    localStorage.setItem(
+      "individualLikedArray",
+      JSON.stringify(existingLikedArray)
+    );
     setLikedArray(existingLikedArray);
-    localStorage.setItem("likedArray", JSON.stringify(existingLikedArray));
+    setTriggered(!triggered);
   };
 
   //FUNCTIONS

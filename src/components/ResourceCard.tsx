@@ -66,7 +66,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
       if (!list.length) return null;
 
       return (
-        <div key={key}>
+        <li key={key}>
           <H4>{key}</H4>
           <span>
             {list.map((url, index) => (
@@ -80,17 +80,17 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
                 }}
                 transform="capitalize"
               >
-                &bull; {`${key.slice(0, -1)} ${index + 1}`}
+                {`${key.slice(0, -1)} ${index + 1}`}
               </P>
             ))}
           </span>
-        </div>
+        </li>
       );
     }
 
     return (
       <li key={key}>
-        <H4>{key}</H4> : <P>{dateString.includes(key) ? formatDate(list) : list}</P>
+        <H4>{key}</H4> <P>{dateString.includes(key) ? formatDate(list) : list}</P>
       </li>
     );
   };
@@ -115,9 +115,9 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
           alt="icon"
         />
       </div>
-      <div className="card__details" ref={dataDiv}>
+      <ul className="card__details" ref={dataDiv}>
         {cardData.map(([k, v]) => renderEntry(k, v))}
-      </div>
+      </ul>
       <button className="favorite" onClick={() => toggleFavorite(id)}>
         <i className={`${favs.includes(id) ? 'fas' : 'far'} fa-heart`} />
       </button>

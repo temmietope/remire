@@ -1,4 +1,3 @@
-import { Result } from '../models/';
 import { capitalize } from './capitalize';
 
 const detailsWanted = [
@@ -66,9 +65,11 @@ type GenericObject = { [key: string]: any }
 /**
  * @description extract required data from payload
  */
-const extractDetails = (payload: GenericObject): Result[][] =>
+const extractDetails = (
+  payload: GenericObject,
+): { [key: string]: string | string[] }[][] =>
   Object.entries(payload)
     .filter(([k]) => detailsWanted.includes(k))
-    .map(([k, v]: any) => [capitalize(k), v]);
+    .map(([k, v]: any) => [capitalize(k), v])
 
 export default extractDetails;

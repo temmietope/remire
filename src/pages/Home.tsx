@@ -6,8 +6,8 @@ import { getFavs, toggleFav } from '../utils/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { H2 } from '../theme/typography';
-import { Loader } from './Loader';
-import Resources from '../pages/Resources';
+import { Loader } from '../components/Loader';
+import Resources from './Resources';
 
 const FAV_KEY = 'root';
 

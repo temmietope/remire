@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-
 import { createGlobalStyle } from 'styled-components'
+import { breakpoints } from './breakpoints'
 
 export const GlobalStyle = createGlobalStyle`
 body{
@@ -158,7 +158,6 @@ export const RootCard = styled.div`
     }
     i {
       color: #594a4e;
-      /* color: ${(props) => (props.liked ? 'red' : '#594a4e')}; */
     }
     i.fas {
       color: #ff8ba7;
@@ -169,6 +168,12 @@ export const RootCard = styled.div`
     css`
       background: #ff8ba7;
     `}
+  @media ${breakpoints.tablet} {
+    flex: 45%;
+  }
+  @media ${breakpoints.mobile} {
+    flex: 100%;
+  }
 `
 
 export const ResourcesWrapper = styled.div`
@@ -182,6 +187,7 @@ export const ResourcesWrapper = styled.div`
   transition: all 0.3s;
   opacity: ${(props) => (props.display ? '1' : '0')};
   visibility: ${(props) => (props.display ? 'visible' : 'hidden')};
+  z-index: ${(props) => (props.display ? '1' : '-2')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,6 +203,7 @@ export const ResourcesWrapper = styled.div`
     top: 1rem;
     right: 5%;
     font-size: 2rem;
+    z-index: 1;
     color: #33272a;
     padding: 0.5% 1%;
     border: none;
@@ -208,24 +215,11 @@ export const ResourcesWrapper = styled.div`
 `
 
 export const ResourcesDiv = styled.div`
-  width: 30%;
+  width: 35%;
   transition: all 0.3s;
   height: fit-content;
-  /* display: flex;
-  justify-content: space-between;
-  transition: all 500ms ease-in-out;
-  align-items: flex-start;
-  border-radius: var(--border-radius);
-  height: fit-content;
-  overflow-y: hidden;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-snap-points-x: repeat(100%);
-  scroll-snap-type: mandatory;
-  scroll-snap-destination: 100% 0%;
-  box-sizing: border-box; */
   .swipe-card {
-    padding: 10%;
+    padding: 12%;
     overflow-y: hidden !important;
   }
   ${(props) =>
@@ -240,6 +234,12 @@ export const ResourcesDiv = styled.div`
       }
       }
     `}
+  @media ${breakpoints.tablet} {
+    width: 50%;
+  }
+  @media ${breakpoints.mobile} {
+    width: 100%;
+  }
 `
 
 export const ResourceCard = styled.div`
@@ -261,13 +261,16 @@ export const ResourceCard = styled.div`
     text-transform: uppercase;
   }
   .card__avatar {
-    height: 30%;
+    height: 45%;
     transition: all 0.1s;
+    opacity: 0.8;
     img,
     svg {
       object-fit: contain;
       width: 100%;
       height: 100%;
+      max-width: 100%;
+      max-height: 100%;
     }
   }
   ::before,
@@ -299,13 +302,13 @@ export const ResourceCard = styled.div`
     transition: all 0.2s;
     position: absolute;
     right: 5%;
+    top: 1rem;
     :hover {
       transform: scale(1.1);
     }
     i {
       color: #594a4e;
       font-size: 1rem;
-      /* color: ${(props) => (props.liked ? 'red' : '#594a4e')}; */
     }
     i.fas {
       color: #ff8ba7;
@@ -317,7 +320,6 @@ export const ResourceCard = styled.div`
     visibility: hidden;
     height: 0;
     position: relative;
-    transition: all 0.5s;
     :before {
       position: absolute;
       content: '';
@@ -332,11 +334,19 @@ export const ResourceCard = styled.div`
       display: flex;
       margin-bottom: 0.2%;
       align-items: center;
+      justify-content: flex-start;
+      width: fit-content;
       flex-wrap: wrap;
       h4 {
         position: relative;
+        width: fit-content;
+        height: 100%;
         padding-right: 0.5rem;
         margin-bottom: 0;
+        :after{
+          position: absolute;
+          content: ':';
+        }
       }
       h4,
       p {
@@ -348,20 +358,15 @@ export const ResourceCard = styled.div`
       }
     }
   }
-  .array__list {
+  span {
     display: flex;
     flex-wrap: wrap;
-    div {
-      margin-left: 0.5rem;
-      padding: 0;
-    }
+      /* margin-left: 0.5rem; */
     p {
       transition: all 0.1s;
       cursor: pointer;
-      width: 100%;
-      /* padding-right: 0.2rem; */
+      padding-right: 0.5rem;
       margin-left: 0.1rem;
-      /* margin: 0; */
       position: relative;
       :after {
         position: absolute;
@@ -385,22 +390,16 @@ export const ResourceCard = styled.div`
     box-sizing: border-box;
     border-radius: var(--border-radius);
     position: absolute;
-    top: 1rem;
+    top: 3rem;
     right: 5%;
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    /* 
-    font-size: 2rem;
-    
-    padding: 0.5% 1%;
-   
-    */
   }
 
   ${(props) =>
     props.showMore &&
     css`
-      height: 23rem;
+      height: 25rem;
       .card__details {
         padding: 3% 0;
         opacity: 1;
@@ -423,22 +422,17 @@ export const ResourceCard = styled.div`
   ${(props) =>
     props.component === 'loader' &&
     css`
-      position: relative;
       .card__avatar {
-        height: 100%;
-        position: absolute;
         opacity: 0.3;
-        pointer-events: none;
-        display: grid;
-        place-content: center;
-        img,
-        svg {
-          object-fit: contain;
-          width: 100%;
-          height: 80%;
-        }
       }
     `}
+    @media ${breakpoints.tablet} {
+    height: 20rem;
+    ${(props) =>
+      props.showMore &&
+      css`
+        height: 30rem;
+      `}
 `
 
 export const Button = styled.button`

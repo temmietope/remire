@@ -5,7 +5,7 @@ import * as ROUTES from './routing/routes';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import App from './components/App';
-import Home from './components/Home';
+import Home from './pages/Home';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';

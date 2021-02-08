@@ -10,7 +10,7 @@ export const H1 = styled.h1`
     font-size: 2.2rem;
   }
   @media ${breakpoints.mobile} {
-    flex: 2rem;
+    font-size: 2rem;
   }
 `
 
@@ -23,7 +23,7 @@ export const H2 = styled.h2`
     font-size: 2rem;
   }
   @media ${breakpoints.mobile} {
-    flex: 1.8rem;
+    font-size: 1.8rem;
   }
 `
 
@@ -33,10 +33,10 @@ export const H3 = styled.h3`
   font-weight: 700;
   color: #33272a;
   @media ${breakpoints.tablet} {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
   }
   @media ${breakpoints.mobile} {
-    flex: 1.5rem;
+    font-size: 1.4rem;
   }
 `
 
@@ -49,7 +49,7 @@ export const H4 = styled.h4`
     font-size: 1.35rem;
   }
   @media ${breakpoints.mobile} {
-    flex: 1.15rem;
+    font-size: 1.1rem;
   }
 `
 

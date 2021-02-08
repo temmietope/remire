@@ -87,6 +87,14 @@ export const Loading = styled.div`
   left: 0;
   display: grid;
   place-content: center;
+  box-sizing: border-box;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5%;
+    box-sizing: border-box;
+  }
 `
 
 export const HomeWrapper = styled.div`
@@ -140,14 +148,7 @@ export const RootCard = styled.div`
     transform: rotate(5deg);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
-  button {
-    position: absolute;
-    bottom: 4%;
-    right: 4%;
-    i {
-      font-size: 2rem;
-    }
-  }
+
   .favorite {
     background: none;
     border: none;
@@ -156,7 +157,11 @@ export const RootCard = styled.div`
     :hover {
       transform: scale(1.1);
     }
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
     i {
+      font-size: 2rem;
       color: #594a4e;
     }
     i.fas {
@@ -173,6 +178,11 @@ export const RootCard = styled.div`
   }
   @media ${breakpoints.mobile} {
     flex: 100%;
+    .favorite {
+      i {
+        font-size: 1.5rem;
+      }
+    }
   }
 `
 
@@ -196,7 +206,6 @@ export const ResourcesWrapper = styled.div`
     text-transform: uppercase;
     position: absolute;
     top: 1rem;
-    /* font-family: 'Poller One', cursive; */
   }
   button.close_btn {
     position: absolute;
@@ -308,7 +317,7 @@ export const ResourceCard = styled.div`
     }
     i {
       color: #594a4e;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     i.fas {
       color: #ff8ba7;
@@ -343,7 +352,7 @@ export const ResourceCard = styled.div`
         height: 100%;
         padding-right: 0.5rem;
         margin-bottom: 0;
-        :after{
+        :after {
           position: absolute;
           content: ':';
         }
@@ -361,7 +370,7 @@ export const ResourceCard = styled.div`
   span {
     display: flex;
     flex-wrap: wrap;
-      /* margin-left: 0.5rem; */
+    /* margin-left: 0.5rem; */
     p {
       transition: all 0.1s;
       cursor: pointer;
@@ -433,6 +442,7 @@ export const ResourceCard = styled.div`
       css`
         height: 30rem;
       `}
+  }
 `
 
 export const Button = styled.button`

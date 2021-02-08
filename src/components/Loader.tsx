@@ -1,9 +1,11 @@
-import { ReactComponent as LoaderIcon } from '../assets/icons/loading.svg';
-import { Loading } from '../theme/styles';
-import React from 'react';
+import { Loading } from '../theme/styles'
+import React from 'react'
 
 export const Loader = () => (
   <Loading>
-    <LoaderIcon />
+    <img
+      src={require('../assets/icons/loading.svg').default}
+      alt="Page loader icon"
+    />
   </Loading>
-);
+)

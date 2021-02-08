@@ -227,7 +227,9 @@ export const ResourcesDiv = styled.div`
   width: 35%;
   transition: all 0.3s;
   height: fit-content;
-  .swipe-card {
+  box-sizing: border-box;
+  .swipe-card,
+  .loader__wrapper {
     padding: 12%;
     overflow-y: hidden !important;
   }
@@ -433,6 +435,7 @@ export const ResourceCard = styled.div`
     css`
       .card__avatar {
         opacity: 0.3;
+        height: 100%;
       }
     `}
     @media ${breakpoints.tablet} {

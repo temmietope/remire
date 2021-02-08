@@ -44,7 +44,6 @@ const Resources: FC<IResource> = ({ display, closeTab, resourceType }) => {
           <BindKeyboardSwipeableViews
             disabled={newView}
             enableMouseEvents
-            resistance
             slideClassName="swipe-card"
           >
             {resources?.payload?.map((resource) => (

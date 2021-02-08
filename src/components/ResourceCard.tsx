@@ -1,137 +1,131 @@
-import React, { FC, useState, useEffect, useRef } from "react";
-import { Button, ResourceCard as Card } from "../theme/styles";
-import { H3, H4, P } from "../theme/typography";
-import { extractDetails } from "../utils/functions/extractDetails";
-import { useDispatch } from "react-redux";
-import { fetchResource, clearQuickView } from "../actions";
-import { formatDate } from "../utils/functions/formatDate";
+import { Button, ResourceCard as Card } from '../theme/styles';
+import { H3, H4, P } from '../theme/typography';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { clearQuickView, fetchResource } from '../actions';
+import { getFavs, toggleFav } from '../utils/store';
+
+import { Result } from '../models';
+import extractDetails from '../utils/extractDetails';
+import { formatDate } from '../utils/formatDate';
+import { useDispatch } from 'react-redux'
 
 interface Resource {
-  resource: { [key: string]: any };
-  quickView: boolean;
+  resource: Result,
+  quickView: boolean
 }
 
+const FAV_KEY = 'resource';
+const dateString = ['Created', 'Edited', 'Release Date'];
+
+const getResourceId = resource => resource?.url?.split('/api/')[1];
+
 const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
-  const detailsDiv = useRef(null);
+  const dataDiv = useRef(null);
   const dispatch = useDispatch();
-  const dateString = ["Created", "Edited", "Release Date"];
 
-  //INTERNAL STATE
-  //show card details
   const [active, setActive] = useState(false);
-  const [cardHeader, setCardHeader] = useState("");
-  const [history, setHistory] = useState([resource]);
-  const [details, setDetails] = useState(
-    extractDetails(history[history.length - 1])
-  );
+  const [cardHeader, setCardHeader] = useState('');
+
+  /**
+   * this is a stack of all clicked cards cardStack, used to store the states of all viewed cards.
+   * we pop this stack everytime a user clicks go back
+   */
+  const [cardStack, setCardStack] = useState<Result[]>([resource]);
+  const [cardData, setCardData] = useState(extractDetails(cardStack));
+
   const goBack = () => {
-    const newArray = history.slice(0, -1);
-    setHistory(newArray);
+    setCardStack(cardStack.slice(0, -1));
   };
-  const [likedArray, setLikedArray] = useState([]);
-  const [triggered, setTriggered] = useState(false);
-  const getAllLiked = () => {
-    let localArray = JSON.parse(
-      localStorage.getItem("individualLikedArray") || "[]"
-    );
-    setLikedArray(localArray);
-  };
-  const id = history[history.length - 1].url.split("/").slice(4, 6).join("/");
 
-  //LIFECYCLE
-  useEffect(() => {
-    detailsDiv.current.scrollTo({ top: 0, behavior: "smooth" });
-    setCardHeader(
-      history[history.length - 1].name || history[history.length - 1].title
-    );
-    setDetails(extractDetails(history[history.length - 1]));
-  }, [history]);
+  const [favs, setFavs] = useState(getFavs(FAV_KEY));
+
+  const getResource = () => cardStack[cardStack.length - 1];
+
+  const id = getResourceId(getResource());
 
   useEffect(() => {
-    getAllLiked();
-  }, [triggered]);
-  const showMore = () => {
-    setActive(!active);
-  };
-  const toggleLike = (id) => {
-    let existingLikedArray = likedArray;
-    if (likedArray.includes(id)) {
-      existingLikedArray = existingLikedArray.filter((val) => val !== id);
-    } else existingLikedArray.push(id);
-    localStorage.setItem(
-      "individualLikedArray",
-      JSON.stringify(existingLikedArray)
-    );
-    setLikedArray(existingLikedArray);
-    setTriggered(!triggered);
+    // @ts-ignore
+    dataDiv.current.scrollTo({ top: 0, behavior: 'smooth' });
+    const item = getResource();
+
+    setCardHeader(item.name || item.title);
+    setCardData(extractDetails(item));
+  }, [cardStack]);
+
+  useEffect(() => {
+    getFavs(FAV_KEY);
+  }, []);
+
+  const toggleFavorite = type => {
+    toggleFav(type, FAV_KEY);
+    setFavs(getFavs(FAV_KEY));
   };
 
-  //FUNCTIONS
-  const extractType = (str) => str.split("/").slice(4, 5)[0].slice(0, -1);
-  const renderEntry = (key, val) => {
-    if (Array.isArray(val)) {
-      if (!val.length) {
-        return null;
-      }
+  const renderEntry = (key, list) => {
+    if (Array.isArray(list)) {
+      if (!list.length) return null;
+
       return (
-        <li key={key}>
-          <H4>{key}</H4>:
-          <div className="array__list">
-            {val.map((str, index) => {
-              return (
-                <div key={index}>
-                  <P
-                    transform="capitalize"
-                    onClick={async () => {
-                      const res = await dispatch(fetchResource(str));
-                      setHistory([...history, res.payload]);
-                    }}
-                  >
-                    {`${extractType(str)} ${index + 1}`}
-                  </P>
-                </div>
-              );
-            })}
-          </div>
-        </li>
+        <div key={key}>
+          <H4>{key}</H4>
+          <span>
+            {list.map((url, index) => (
+              <P
+                key={url}
+                onClick={async () => {
+                  const res = await dispatch(fetchResource(url));
+                  // @ts-ignore
+
+                  setCardStack([...cardStack, res.payload]);
+                }}
+                transform="capitalize"
+              >
+                &bull; {`${key.slice(0, -1)} ${index + 1}`}
+              </P>
+            ))}
+          </span>
+        </div>
       );
     }
+
     return (
       <li key={key}>
-        <H4>{key}</H4>:<P>{dateString.includes(key) ? formatDate(val) : val}</P>
+        <H4>{key}</H4> : <P>{dateString.includes(key) ? formatDate(list) : list}</P>
       </li>
     );
   };
 
   return (
-    <Card key={resource.name} showMore={active} quickView={quickView}>
-      {history.length > 1 && (
+    <Card key={resource.name} quickView={quickView} showMore={active}>
+      {cardStack.length > 1 && (
         <button
           className="back"
           onClick={() => {
-            history.length === 2 && dispatch(clearQuickView());
-            goBack();
+            cardStack.length === 2 && dispatch(clearQuickView())
+            goBack()
           }}
         >
-          Back
+          {'Back'}
         </button>
       )}
       <H3>{cardHeader}</H3>
-      <div className="card__details" ref={detailsDiv}>
-        {details.map(([k, v]) => {
-          return renderEntry(k, v);
-        })}
+      <div className="card__avatar">
+        <img
+          src={require('../assets/icons/starwars-head.svg').default}
+          alt="icon"
+        />
       </div>
-      <button onClick={() => toggleLike(id)} className="favorite">
-        <i
-          className={`${likedArray.includes(id) ? "fas" : "far"} fa-heart`}
-        ></i>
+      <div className="card__details" ref={dataDiv}>
+        {cardData.map(([k, v]) => renderEntry(k, v))}
+      </div>
+      <button className="favorite" onClick={() => toggleFavorite(id)}>
+        <i className={`${favs.includes(id) ? 'fas' : 'far'} fa-heart`} />
       </button>
-      <Button onClick={() => showMore()}>
-        {active ? "Show Less" : "View More!"}
+      <Button onClick={() => setActive(!active)}>
+        {active ? 'Show Less' : 'View More!'}
       </Button>
     </Card>
-  );
+  )
 };
 
 export default ResourceCard;

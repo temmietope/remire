@@ -1,27 +1,34 @@
-// import JsonClient from 'json-client';
+const URL = 'https://swapi.dev/api/';
 
-// const client = new JsonClient('https://swapi.dev/api/');
+import { Resource, Result, Root } from './models';
 
-// export const getRoots = async () => await client('get', '', null, null);
-// export const getRoot = async root => await client('get', root, null, null);
+import secureUrl from './utils/secureUrl';
 
-const URL = "https://swapi.dev/api/";
-
-export const getRoots = async () => {
+/**
+ * @description fetch all root types
+ */
+export const getRoots = async (): Promise<Root> => {
   const res = await fetch(URL);
-  const data = await res.json();
-  return data;
+
+  return await res.json();
 };
 
-export const getResources = async (root) => {
+/**
+ * @description fetch all resources of a root type eg all people.
+ */
+export const getResources = async (root: string): Promise<Resource> => {
   const res = await fetch(`${URL}${root}/`);
-  const data = await res.json();
-  return data.results;
+  const resp = await res.json();
+
+  return resp.results;
 };
 
-export const getResource = async (url) => {
-  const base = url.replace("http", "https");
-  const res = await fetch(`${base}`);
-  const data = await res.json();
-  return data;
+/**
+ * @description get single resource by url, eg people/1
+ */
+export const getResource = async (url: string) :Promise<Result> => {
+  const res = await fetch(`${secureUrl(url)}`);
+  const resp = await res.json();
+
+  return resp;
 };

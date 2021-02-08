@@ -1,13 +1,16 @@
-import App from "./components/App";
-import Home from "./components/Home";
-import { Provider } from "react-redux";
-import React from "react";
-import ReactDOM from "react-dom";
-import { createGlobalStyle } from "styled-components";
-import createStore from "./store";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import * as ROUTES from "./routing/routes";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import * as ROUTES from './routing/routes';
+
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+
+import App from './components/App';
+import Home from './components/Home';
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createGlobalStyle } from 'styled-components';
+import createStore from './store';
 
 const GlobalStyle = createGlobalStyle`
 	body {
@@ -22,11 +25,14 @@ const routes = (
       <GlobalStyle />
       <App>
         <Switch>
-          <Route component={Home} exact path={ROUTES.HOME} />
+          <Route component={Home}
+exact
+path={ROUTES.HOME}
+          />
         </Switch>
       </App>
     </Router>
   </Provider>
 );
 
-ReactDOM.render(routes, document.getElementById("root"));
+ReactDOM.render(routes, document.getElementById('root'));

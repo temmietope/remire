@@ -1,91 +1,85 @@
-import { fetchResources, fetchRoots, clearQuickView } from "../actions";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { HomeWrapper, RootCard } from "../theme/styles";
-import { H2 } from "../theme/typography";
-import Resources from "../pages/Resources";
-import { Loader } from "./Loader";
+import { HomeWrapper, RootCard } from '../theme/styles';
+import { Istate, RootKeys } from '../models';
+import React, { useEffect, useState } from 'react';
+import { clearQuickView, fetchResources, fetchRoots } from '../actions';
+import { getFavs, toggleFav } from '../utils/store';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { H2 } from '../theme/typography';
+import { Loader } from './Loader';
+import Resources from '../pages/Resources';
+
+const FAV_KEY = 'root';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const roots = useSelector((state) => state.roots);
+  const roots = useSelector((state :Istate) => state.roots);
+
   const [showResources, setShowResources] = useState(false);
-  const [resource, setResource] = useState("");
-  const [likedArray, setLikedArray] = useState(
-    JSON.parse(localStorage.getItem("likedArray") || "[]")
-  );
-  const [triggered, setTriggered] = useState(false);
-  const getAllLiked = () => {
-    let localArray = JSON.parse(localStorage.getItem("likedArray") || "[]");
-    setLikedArray(localArray);
-  };
+  const [resourceType, setResourceType] = useState<RootKeys | ''>('');
+
+  const [favs, setFavs] = useState(getFavs(FAV_KEY));
 
   useEffect(() => {
     dispatch(fetchRoots());
   }, [dispatch]);
-  useEffect(() => {
-    getAllLiked();
-  }, [triggered]);
 
-  const keys = Object.keys(roots.payload || {});
-  showResources
-    ? document.body.classList.add("no-scroll")
-    : document.body.classList.remove("no-scroll");
+  useEffect(() => {
+    getFavs(FAV_KEY);
+  }, []);
+
+  // eslint-disable-next-line no-unused-expressions
+  showResources ? document.body.classList.add('no-scroll') : document.body.classList.remove('no-scroll');
 
   const closeTab = () => {
     setShowResources(false);
     dispatch(clearQuickView());
   };
 
-  const toggleLike = (type) => {
-    let existingLikedArray = likedArray;
-    if (likedArray.includes(type)) {
-      existingLikedArray = existingLikedArray.filter((val) => val !== type);
-    } else existingLikedArray.push(type);
-    localStorage.setItem("likedArray", JSON.stringify(existingLikedArray));
-    setLikedArray(existingLikedArray);
-    setTriggered(!triggered);
+  const toggleFavorite = type => {
+    toggleFav(type, FAV_KEY);
+    setFavs(getFavs(FAV_KEY));
   };
+
+  const rootTypes = Object.keys(roots.payload || {});
 
   return (
     <HomeWrapper>
       {roots.isLoading ? (
         <Loader />
       ) : (
-        roots.payload &&
-        keys.map((root) => {
-          return (
-            <RootCard
-              key={root}
-              onClick={async () => {
-                await dispatch(fetchResources(root));
-                setShowResources(true);
-                setResource(root);
+        // @ts-ignore
+        rootTypes.map((type: RootKeys) => (
+          <RootCard
+            key={type}
+            onClick={async () => {
+              setShowResources(true)
+              setResourceType(type)
+              await dispatch(fetchResources(type));
+            }}
+          >
+            <H2>{type}</H2>
+            <button
+              className="favorite"
+              onClick={e => {
+                e.stopPropagation();
+                toggleFavorite(type);
               }}
             >
-              <H2>{root}</H2>
-              <button
-                className="favorite"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleLike(root);
-                }}
-              >
-                <i
-                  className={`${
-                    likedArray.includes(root) ? "fas" : "far"
-                  } fa-heart`}
-                ></i>
-              </button>
-            </RootCard>
-          );
-        })
+              <i
+                className={`${
+                  favs.includes(type) ? 'fas' : 'far'
+                } fa-heart`}
+              />
+            </button>
+          </RootCard>
+        ))
       )}
 
       <Resources
-        display={showResources}
         closeTab={closeTab}
-        resource={resource}
+        display={showResources}
+        resourceType={resourceType}
       />
     </HomeWrapper>
   );

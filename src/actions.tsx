@@ -1,50 +1,55 @@
-import { getRoots, getResources, getResource } from "./api";
 import {
+  CLEAR_RESOURCE,
+  FETCH_RESOURCE,
   FETCH_RESOURCES,
   FETCH_RESOURCES_FAILURE,
   FETCH_RESOURCES_SUCCESS,
-  FETCH_RESOURCE,
   FETCH_RESOURCE_FAILURE,
   FETCH_RESOURCE_SUCCESS,
-  CLEAR_RESOURCE,
   FETCH_ROOTS,
   FETCH_ROOTS_FAILURE,
   FETCH_ROOTS_SUCCESS,
-} from "./constants";
+} from './constants';
+import { getResource, getResources, getRoots } from './api';
 
-export const fetchRoots = () => (dispatch) => {
+import { IDispatch } from './models';
+
+export const fetchRoots = () => async (dispatch: IDispatch) => {
   dispatch({ type: FETCH_ROOTS });
 
-  const request = getRoots();
+  try {
+    const root = await getRoots();
 
-  return request.then(
-    (resp) => dispatch({ type: FETCH_ROOTS_SUCCESS, payload: resp }),
-    (error) => dispatch({ type: FETCH_ROOTS_FAILURE, payload: error })
-  );
+    return dispatch({ type: FETCH_ROOTS_SUCCESS, payload: root });
+  } catch (error) {
+    return dispatch({ type: FETCH_ROOTS_FAILURE, payload: error });
+  }
 };
 
-export const fetchResources = (root) => (dispatch) => {
+export const fetchResources = (rootType: string) => async (dispatch: IDispatch) => {
   dispatch({ type: FETCH_RESOURCES });
 
-  const request = getResources(root);
+  try {
+    const resources = await getResources(rootType);
 
-  return request.then(
-    (resp) => dispatch({ type: FETCH_RESOURCES_SUCCESS, payload: resp }),
-    (error) => dispatch({ type: FETCH_RESOURCES_FAILURE, payload: error })
-  );
+    return dispatch({ type: FETCH_RESOURCES_SUCCESS, payload: resources });
+  } catch (error) {
+    return dispatch({ type: FETCH_RESOURCES_FAILURE, payload: error });
+  }
 };
 
-export const fetchResource = (url) => (dispatch) => {
+export const fetchResource = (url: string) => async (dispatch: IDispatch) => {
   dispatch({ type: FETCH_RESOURCE });
 
-  const request = getResource(url);
+  try {
+    const resource = await getResource(url);
 
-  return request.then(
-    (resp) => dispatch({ type: FETCH_RESOURCE_SUCCESS, payload: resp }),
-    (error) => dispatch({ type: FETCH_RESOURCE_FAILURE, payload: error })
-  );
+    return dispatch({ type: FETCH_RESOURCE_SUCCESS, payload: resource });
+  } catch (error) {
+    return dispatch({ type: FETCH_RESOURCE_FAILURE, payload: error });
+  }
 };
 
-export const clearQuickView = () => (dispatch) => {
+export const clearQuickView = () => (dispatch: IDispatch) => {
   dispatch({ type: CLEAR_RESOURCE });
 };

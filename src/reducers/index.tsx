@@ -1,20 +1,27 @@
-import { combineReducers } from "redux";
-import initialState from "./initial-state";
+/* eslint-disable no-undefined */
 import {
+  Action,
+  IReducer,
+} from '../models';
+import {
+  CLEAR_RESOURCE,
+  FETCH_RESOURCE,
   FETCH_RESOURCES,
   FETCH_RESOURCES_FAILURE,
   FETCH_RESOURCES_SUCCESS,
-  FETCH_RESOURCE,
   FETCH_RESOURCE_FAILURE,
   FETCH_RESOURCE_SUCCESS,
   FETCH_ROOTS,
   FETCH_ROOTS_FAILURE,
   FETCH_ROOTS_SUCCESS,
-  CLEAR_RESOURCE,
-} from "../constants";
+} from '../constants';
+
+import { combineReducers } from 'redux';
+import initialState from './initialState';
 
 export default combineReducers({
-  roots: (state = initialState.roots, action) => {
+  roots: (state: IReducer, action: Action):IReducer => {
+    state = state || initialState.roots;
     switch (action.type) {
       case FETCH_ROOTS:
         return { isLoading: true };
@@ -31,10 +38,11 @@ export default combineReducers({
           payload: action.payload,
         };
       default:
-        return state;
+        return state
     }
   },
-  resources: (state = initialState.resources, action) => {
+  resources: (state :IReducer, action: Action): IReducer => {
+    state = state || initialState.resources;
     switch (action.type) {
       case FETCH_RESOURCES:
         return { isLoading: true };
@@ -52,10 +60,11 @@ export default combineReducers({
         };
 
       default:
-        return state;
+        return state
     }
   },
-  resource: (state = initialState.resource, action) => {
+  resource: (state :IReducer, action: Action): IReducer => {
+    state = state || initialState.resource;
     switch (action.type) {
       case FETCH_RESOURCE:
         return { isLoading: true };
@@ -74,11 +83,12 @@ export default combineReducers({
 
       case CLEAR_RESOURCE:
         return {
-          payload: void 0,
+          isLoading: false,
+          payload: undefined,
         };
 
       default:
-        return state;
+        return state
     }
   },
 });

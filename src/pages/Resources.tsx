@@ -1,54 +1,64 @@
-import React, { FC, useState, useEffect } from "react";
-import { ResourcesDiv, ResourcesWrapper } from "../theme/styles";
-import { useSelector } from "react-redux";
-import ResourceCard from "../components/ResourceCard";
-import { H1 } from "../theme/typography";
-import SwipeableViews from "react-swipeable-views";
-import { bindKeyboard } from "react-swipeable-views-utils";
+import React, { FC, useEffect, useState } from 'react';
+import { ResourcesDiv, ResourcesWrapper } from '../theme/styles';
+
+import { H1 } from '../theme/typography';
+import { Istate } from '../models';
+import ResourceCard from '../components/ResourceCard';
+import SwipeableViews from 'react-swipeable-views';
+import { bindKeyboard } from 'react-swipeable-views-utils';
+import { useSelector } from 'react-redux';
+import { CardLoader } from '../components/CardLoader';
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
-interface Resource {
-  display: boolean;
-  closeTab: any;
+
+interface IResource {
+  display: boolean,
+  closeTab: any,
+  resourceType: string,
 }
-const Resources: FC<Resource> = ({ display, closeTab, resource }) => {
-  const resources = useSelector((state) => state.resources);
-  const quickView = useSelector((state) => state.resource);
-  const [newView, setNewView] = useState(quickView.payload ? true : false);
+
+const Resources: FC<IResource> = ({ display, closeTab, resourceType }) => {
+  const resources = useSelector((state :Istate) => state.resources);
+  const quickView = useSelector((state :Istate) => state.resource);
+  const [newView, setNewView] = useState(Boolean(quickView.payload));
+
   useEffect(() => {
-    setNewView(quickView.payload ? true : false);
+    setNewView(Boolean(quickView.payload));
   }, [quickView, newView]);
+
   return (
     <ResourcesWrapper display={display}>
       <button
         className="close_btn"
         onClick={() => {
-          closeTab();
+          closeTab()
         }}
       >
-        X
+        {'X'}
       </button>
-      {newView ? "" : <H1>{resource}</H1>}
+      {newView ? '' : <H1>{resourceType}</H1>}
       <ResourcesDiv quickView={newView}>
-        <BindKeyboardSwipeableViews
-          enableMouseEvents
-          disabled={newView}
-          resistance={true}
-          slideClassName='swipe-card'
-        >
-          {resources?.payload?.map((resource) => {
-            return (
+        {resources?.isLoading ? (
+          <CardLoader />
+        ) : (
+          <BindKeyboardSwipeableViews
+            disabled={newView}
+            enableMouseEvents
+            resistance
+            slideClassName="swipe-card"
+          >
+            {resources?.payload?.map((resource) => (
               <ResourceCard
                 key={resource.name || resource.title}
-                resource={resource}
                 quickView={newView}
+                resource={resource}
               />
-            );
-          })}
-        </BindKeyboardSwipeableViews>
+            ))}
+          </BindKeyboardSwipeableViews>
+        )}
       </ResourcesDiv>
     </ResourcesWrapper>
-  );
+  )
 };
 
 export default Resources;

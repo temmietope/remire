@@ -228,11 +228,32 @@ export const ResourcesDiv = styled.div`
   transition: all 0.3s;
   height: fit-content;
   box-sizing: border-box;
+  position: relative;
   .swipe-card,
   .loader__wrapper {
     padding: 12%;
     overflow-y: hidden !important;
   }
+  .scroll__btn {
+    position: absolute;
+    border: none;
+    background: none;
+    outline: none;
+    top: 48%;
+    font-size: 2rem;
+    color: #fffffe;
+    :disabled {
+      opacity: 0.3;
+      user-select: none;
+    }
+  }
+  .btn__prev {
+    left: 2%;
+  }
+  .btn__next {
+    right: 2%;
+  }
+
   ${(props) =>
     props.quickView &&
     css`
@@ -251,6 +272,9 @@ export const ResourcesDiv = styled.div`
   }
   @media ${breakpoints.mobile} {
     width: 100%;
+    .scroll__btn {
+      font-size: 1.3rem;
+    }
   }
 `;
 

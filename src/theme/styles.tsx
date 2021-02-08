@@ -450,7 +450,7 @@ export const ResourceCard = styled.div`
     background-color: #fffffe;
     border: none;
     outline: none;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #ff8ba7;
     box-sizing: border-box;
     border-radius: var(--border-radius);

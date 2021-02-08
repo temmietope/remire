@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`convert http to https get secure url for 0 1`] = `"https://foo.bar"`;
+
+exports[`convert http to https get secure url for 1 1`] = `"https://foo.bar"`;
+
+exports[`convert http to https get secure url for 2 1`] = `"https://foohttp.bar"`;

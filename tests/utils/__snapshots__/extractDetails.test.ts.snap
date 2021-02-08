@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should capitalize and replace underscore should transform object 1`] = `
+Array [
+  Array [
+    "Name",
+    "Luke Skywalker",
+  ],
+  Array [
+    "Height",
+    "172",
+  ],
+  Array [
+    "Mass",
+    "77",
+  ],
+  Array [
+    "Hair color",
+    "blond",
+  ],
+  Array [
+    "Skin color",
+    "fair",
+  ],
+  Array [
+    "Eye color",
+    "blue",
+  ],
+  Array [
+    "Birth year",
+    "19BBY",
+  ],
+  Array [
+    "Gender",
+    "male",
+  ],
+  Array [
+    "Homeworld",
+    "http://swapi.dev/api/planets/1/",
+  ],
+  Array [
+    "Films",
+    Array [
+      "http://swapi.dev/api/films/1/",
+      "http://swapi.dev/api/films/2/",
+      "http://swapi.dev/api/films/3/",
+      "http://swapi.dev/api/films/6/",
+    ],
+  ],
+  Array [
+    "Species",
+    Array [],
+  ],
+  Array [
+    "Vehicles",
+    Array [
+      "http://swapi.dev/api/vehicles/14/",
+      "http://swapi.dev/api/vehicles/30/",
+    ],
+  ],
+  Array [
+    "Starships",
+    Array [
+      "http://swapi.dev/api/starships/12/",
+      "http://swapi.dev/api/starships/22/",
+    ],
+  ],
+  Array [
+    "Created",
+    "2014-12-09T13:50:51.644000Z",
+  ],
+  Array [
+    "Edited",
+    "2014-12-20T21:17:56.891000Z",
+  ],
+]
+`;
+
+exports[`should capitalize and replace underscore should transform object 2`] = `
+Array [
+  Array [
+    "Name",
+    "CR90 corvette",
+  ],
+  Array [
+    "Model",
+    "CR90 corvette",
+  ],
+  Array [
+    "Manufacturer",
+    "Corellian Engineering Corporation",
+  ],
+  Array [
+    "Cost in credits",
+    "3500000",
+  ],
+  Array [
+    "Length",
+    "150",
+  ],
+  Array [
+    "Max atmosphering speed",
+    "950",
+  ],
+  Array [
+    "Crew",
+    "30-165",
+  ],
+  Array [
+    "Passengers",
+    "600",
+  ],
+  Array [
+    "Cargo capacity",
+    "3000000",
+  ],
+  Array [
+    "Consumables",
+    "1 year",
+  ],
+  Array [
+    "Hyperdrive rating",
+    "2.0",
+  ],
+  Array [
+    "MGLT",
+    "60",
+  ],
+  Array [
+    "Starship class",
+    "corvette",
+  ],
+  Array [
+    "Pilots",
+    Array [],
+  ],
+  Array [
+    "Films",
+    Array [
+      "http://swapi.dev/api/films/1/",
+      "http://swapi.dev/api/films/3/",
+      "http://swapi.dev/api/films/6/",
+    ],
+  ],
+  Array [
+    "Created",
+    "2014-12-10T14:20:33.369000Z",
+  ],
+  Array [
+    "Edited",
+    "2014-12-20T21:23:49.867000Z",
+  ],
+]
+`;
+
+exports[`should capitalize and replace underscore should transform object 3`] = `
+Array [
+  Array [
+    "Name",
+    "T-16 skyhopper",
+  ],
+  Array [
+    "Model",
+    "T-16 skyhopper",
+  ],
+  Array [
+    "Manufacturer",
+    "Incom Corporation",
+  ],
+  Array [
+    "Cost in credits",
+    "14500",
+  ],
+  Array [
+    "Length",
+    "10.4 ",
+  ],
+  Array [
+    "Max atmosphering speed",
+    "1200",
+  ],
+  Array [
+    "Crew",
+    "1",
+  ],
+  Array [
+    "Passengers",
+    "1",
+  ],
+  Array [
+    "Cargo capacity",
+    "50",
+  ],
+  Array [
+    "Consumables",
+    "0",
+  ],
+  Array [
+    "Vehicle class",
+    "repulsorcraft",
+  ],
+  Array [
+    "Pilots",
+    Array [],
+  ],
+  Array [
+    "Films",
+    Array [
+      "http://swapi.dev/api/films/1/",
+    ],
+  ],
+  Array [
+    "Created",
+    "2014-12-10T16:01:52.434000Z",
+  ],
+  Array [
+    "Edited",
+    "2014-12-20T21:30:21.665000Z",
+  ],
+]
+`;

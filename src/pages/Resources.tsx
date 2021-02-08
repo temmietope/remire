@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { ResourcesDiv, ResourcesWrapper } from '../theme/styles';
 
-import { H1 } from '../theme/typography';
+import { H2 } from '../theme/typography';
 import { Istate } from '../models';
 import ResourceCard from '../components/ResourceCard';
 import SwipeableViews from 'react-swipeable-views';
@@ -36,7 +36,7 @@ const Resources: FC<IResource> = ({ display, closeTab, resourceType }) => {
       >
         {'X'}
       </button>
-      {newView ? '' : <H1>{resourceType}</H1>}
+      {newView ? '' : <H2>{resourceType}</H2>}
       <ResourcesDiv quickView={newView}>
         {resources?.isLoading ? (
           <CardLoader />

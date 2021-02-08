@@ -1,13 +1,13 @@
 {
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
-
   "plugins": ["babel", "react"],
 
   "env": {
     "node": false,
     "browser": true,
     "es6": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -167,10 +167,7 @@
     "prefer-spread": 1,
     "prefer-template": 1,
     "require-yield": 1,
-    "sort-imports": [
-      1,
-
-    ],
+    "sort-imports": [1],
     "template-curly-spacing": 1,
     "yield-star-spacing": 1,
 

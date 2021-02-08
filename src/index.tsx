@@ -25,10 +25,7 @@ const routes = (
       <GlobalStyle />
       <App>
         <Switch>
-          <Route component={Home}
-exact
-path={ROUTES.HOME}
-          />
+          <Route component={Home} exact path={ROUTES.HOME} />
         </Switch>
       </App>
     </Router>

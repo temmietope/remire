@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
-import { breakpoints } from './breakpoints'
+import styled, { css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import { breakpoints } from './breakpoints';
 
 export const GlobalStyle = createGlobalStyle`
 body{
@@ -9,7 +9,7 @@ body{
 body.no-scroll{
   overflow-y: hidden;
 }
-  `
+  `;
 
 export const LayoutWrapper = styled.div`
   background: #faeee7;
@@ -18,7 +18,7 @@ export const LayoutWrapper = styled.div`
   box-sizing: border-box;
   --navHeight: 4rem;
   --border-radius: 10px;
-`
+`;
 
 export const Main = styled.div`
   margin: auto;
@@ -30,7 +30,7 @@ export const Main = styled.div`
   height: ${(props) => (props.loading ? '100vh' : 'inherit')};
   scroll-behavior: smooth;
   box-sizing: border-box;
-`
+`;
 
 export const NavbarWrapper = styled.nav`
   position: sticky;
@@ -55,7 +55,7 @@ export const NavbarWrapper = styled.nav`
 
     backdrop-filter: blur(10px);
   }
-`
+`;
 
 export const Nav = styled.div`
   width: 95%;
@@ -71,13 +71,13 @@ export const Nav = styled.div`
       fill: #ff8ba7;
     }
   }
-`
+`;
 
 export const Body = styled.div`
   width: 100%;
   padding: 2rem;
   height: 100%;
-`
+`;
 
 export const Loading = styled.div`
   position: fixed;
@@ -95,12 +95,12 @@ export const Loading = styled.div`
     padding: 5%;
     box-sizing: border-box;
   }
-`
+`;
 
 export const HomeWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-`
+`;
 
 export const RootCard = styled.div`
   height: 15rem;
@@ -184,7 +184,7 @@ export const RootCard = styled.div`
       }
     }
   }
-`
+`;
 
 export const ResourcesWrapper = styled.div`
   width: 100%;
@@ -202,7 +202,7 @@ export const ResourcesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  h1 {
+  h2 {
     text-transform: uppercase;
     position: absolute;
     top: 1rem;
@@ -221,7 +221,7 @@ export const ResourcesWrapper = styled.div`
     box-sizing: border-box;
     border-radius: var(--border-radius);
   }
-`
+`;
 
 export const ResourcesDiv = styled.div`
   width: 35%;
@@ -251,7 +251,7 @@ export const ResourcesDiv = styled.div`
   @media ${breakpoints.mobile} {
     width: 100%;
   }
-`
+`;
 
 export const ResourceCard = styled.div`
   min-width: 100% !important;
@@ -446,7 +446,7 @@ export const ResourceCard = styled.div`
         height: 30rem;
       `}
   }
-`
+`;
 
 export const Button = styled.button`
   outline: none;
@@ -460,4 +460,4 @@ export const Button = styled.button`
   cursor: pointer;
   border: none;
   color: #fffffe;
-`
+`;

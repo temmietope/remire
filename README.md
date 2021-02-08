@@ -1,6 +1,6 @@
 # starwars ⚔️
 
-[remire-starwars.netlify.app](remire-starwars.netlify.app/)
+[https://starwars-force.netlify.app](https://starwars-force.netlify.app/)
 
 Submission for cuvva test, using the Starwars API.
 

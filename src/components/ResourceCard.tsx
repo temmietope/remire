@@ -7,7 +7,7 @@ import { getFavs, toggleFav } from '../utils/store';
 import { Result } from '../models';
 import extractDetails from '../utils/extractDetails';
 import { formatDate } from '../utils/formatDate';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
 interface Resource {
   resource: Result,
@@ -90,7 +90,8 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
 
     return (
       <li key={key}>
-        <H4>{key}</H4> <P>{dateString.includes(key) ? formatDate(list) : list}</P>
+        <H4>{key}</H4>{' '}
+        <P>{dateString.includes(key) ? formatDate(list) : list}</P>
       </li>
     );
   };
@@ -101,8 +102,8 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
         <button
           className="back"
           onClick={() => {
-            cardStack.length === 2 && dispatch(clearQuickView())
-            goBack()
+            cardStack.length === 2 && dispatch(clearQuickView());
+            goBack();
           }}
         >
           {'Back'}
@@ -125,7 +126,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
         {active ? 'Show Less' : 'View More!'}
       </Button>
     </Card>
-  )
+  );
 };
 
 export default ResourceCard;

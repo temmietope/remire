@@ -18,8 +18,8 @@ interface IResource {
 }
 
 const Resources: FC<IResource> = ({ display, closeTab, resourceType }) => {
-  const resources = useSelector((state :Istate) => state.resources);
-  const quickView = useSelector((state :Istate) => state.resource);
+  const resources = useSelector((state: Istate) => state.resources);
+  const quickView = useSelector((state: Istate) => state.resource);
   const [newView, setNewView] = useState(Boolean(quickView.payload));
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Resources: FC<IResource> = ({ display, closeTab, resourceType }) => {
       <button
         className="close_btn"
         onClick={() => {
-          closeTab()
+          closeTab();
         }}
       >
         {'X'}

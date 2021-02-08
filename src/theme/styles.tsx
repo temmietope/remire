@@ -224,7 +224,7 @@ export const ResourcesWrapper = styled.div`
 `;
 
 export const ResourcesDiv = styled.div`
-  width: 35%;
+  width: 37%;
   transition: all 0.3s;
   height: fit-content;
   box-sizing: border-box;
@@ -245,7 +245,8 @@ export const ResourcesDiv = styled.div`
       }
       }
     `}
-  @media ${breakpoints.tablet} {
+  @media
+    ${breakpoints.tablet} {
     width: 50%;
   }
   @media ${breakpoints.mobile} {
@@ -255,35 +256,18 @@ export const ResourcesDiv = styled.div`
 
 export const ResourceCard = styled.div`
   min-width: 100% !important;
-  height: 15rem;
   background-color: #fffffe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   border-radius: var(--border-radius);
-  padding: 6%;
   box-sizing: border-box;
   transition: all 500ms ease-in-out;
+  cursor: pointer;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  height: 15rem;
   position: relative;
-  scroll-snap-align: start;
-  position: relative;
-  h3 {
-    text-transform: uppercase;
-  }
-  .card__avatar {
-    height: 45%;
-    transition: all 0.1s;
-    opacity: 0.8;
-    img,
-    svg {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
+  padding: 6%;
   ::before,
   ::after {
     content: '';
@@ -296,6 +280,7 @@ export const ResourceCard = styled.div`
     background: #fff;
     transition: 0.3s;
     z-index: -1;
+    pointer-events: none;
   }
   :before {
     transform: rotate(10deg);
@@ -305,6 +290,24 @@ export const ResourceCard = styled.div`
     transform: rotate(5deg);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
+  h3 {
+    text-transform: uppercase;
+  }
+  .card__avatar {
+    height: 45%;
+    transition: all 0.1s;
+    opacity: 0.8;
+    pointer-events: none;
+    img,
+    svg {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
   button.favorite {
     width: fit-content;
     background: none;

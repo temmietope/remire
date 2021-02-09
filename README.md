@@ -1,6 +1,7 @@
 # starwars ⚔️
 
 [https://starwars-force.netlify.app](https://starwars-force.netlify.app/)
+
 Frontend for Starwars API
 
 ## Installation

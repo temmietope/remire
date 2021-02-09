@@ -5,6 +5,10 @@ import { breakpoints } from './breakpoints'
 export const GlobalStyle = createGlobalStyle`
 body{
   height: inherit;
+  width: 100%;
+  height:100%;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 body.no-scroll{
   overflow-y: hidden;
@@ -27,7 +31,7 @@ export const Main = styled.div`
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  height: ${(props) => (props.loading ? '100vh' : 'inherit')};
+  height:inherit
   scroll-behavior: smooth;
   box-sizing: border-box;
 `
@@ -75,8 +79,9 @@ export const Nav = styled.div`
 
 export const Body = styled.div`
   width: 100%;
-  padding: 2rem;
+  padding: 2%;
   height: 100%;
+  box-sizing: border-box;
 `
 
 export const Loading = styled.div`
@@ -110,7 +115,6 @@ export const RootCard = styled.div`
   background: #fffffe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   transition: all 0.3s;
-  padding: 3%;
   text-align: center;
   display: grid;
   place-items: center;
@@ -243,6 +247,7 @@ export const ResourcesDiv = styled.div`
   .swipe-card,
   .loader__wrapper {
     padding: 12%;
+    box-sizing: border-box;
     overflow-y: hidden !important;
   }
   .swipe-card {
@@ -406,12 +411,13 @@ export const ResourceCard = styled.div`
       justify-content: flex-start;
       width: fit-content;
       flex-wrap: wrap;
+      font-family: 'Nunito', sans-serif;
       h4 {
         position: relative;
         width: fit-content;
         height: 100%;
         padding-right: 0.5rem;
-        margin-bottom: 0;
+        margin: 0;
         :after {
           position: absolute;
           content: ':';
@@ -470,7 +476,7 @@ export const ResourceCard = styled.div`
         padding: 3% 0;
         opacity: 1;
         visibility: visible;
-        height: 85%;
+        height: 80%;
         overflow: auto;
         margin: 8% 0;
         scroll-snap-type: y mandatory;

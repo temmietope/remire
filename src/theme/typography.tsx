@@ -19,6 +19,7 @@ export const H2 = styled.h2`
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   color: #33272a;
+  margin: 0;
   @media ${breakpoints.tablet} {
     font-size: 1.5rem;
   }
@@ -32,6 +33,7 @@ export const H3 = styled.h3`
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   color: #33272a;
+  margin: 0;
   @media ${breakpoints.tablet} {
     font-size: 1.25rem;
   }

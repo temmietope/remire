@@ -1,8 +1,7 @@
 # starwars ⚔️
 
 [https://starwars-force.netlify.app](https://starwars-force.netlify.app/)
-
-Submission for cuvva test, using the Starwars API.
+Frontend for Starwars API
 
 ## Installation
 

@@ -13,7 +13,7 @@ body {
 body.no-scroll { 
   overflow-y: hidden;
 }
-  `
+`
 
 export const LayoutWrapper = styled.div`
   background: #faeee7;
@@ -126,7 +126,7 @@ export const RootCard = styled.div`
   }
   :hover {
     backdrop-filter: blur(10px);
-    filter: brightness(0.96);
+    filter: brightness(0.97);
     h2 {
       transform: scale(1.2);
     }
@@ -139,7 +139,7 @@ export const RootCard = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     background: #fff;
     transition: 0.3s;
     z-index: -1;
@@ -328,7 +328,7 @@ export const ResourceCard = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     background: #fff;
     transition: 0.3s;
     z-index: -1;

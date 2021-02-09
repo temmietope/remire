@@ -12,11 +12,14 @@ yarn install
 
 yarn start
 
+## Performance score
+
+![](./src/assets/screenshots/screenshot3.jpeg)
+
 ## Screenshots
 
 ![](./src/assets/screenshots/screenshot1.jpeg)
 ![](./src/assets/screenshots/screenshot2.jpeg)
-![](./src/assets/screenshots/screenshot3.jpeg)
 
 
 ## Features

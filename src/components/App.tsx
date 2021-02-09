@@ -1,7 +1,7 @@
-import { Body, GlobalStyle, LayoutWrapper } from '../theme/styles';
-import React, { FC } from 'react';
+import { Body, GlobalStyle, LayoutWrapper } from '../theme/styles'
+import React, { FC } from 'react'
 
-import Navbar from './Navbar';
+import Navbar from './Navbar'
 
 interface Props {
   children?: any
@@ -13,6 +13,6 @@ const App: FC<Props> = ({ children }) => (
     <Navbar />
     <Body>{children}</Body>
   </LayoutWrapper>
-);
+)
 
-export default App;
+export default App

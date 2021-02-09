@@ -328,10 +328,10 @@ export const ResourceCard = styled.div`
     transition: 0.3s;
     z-index: -1;
     pointer-events: none;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
   :before {
     transform: rotate(10deg);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
   :after {
     transform: rotate(5deg);
@@ -354,15 +354,18 @@ export const ResourceCard = styled.div`
       max-height: 100%;
     }
   }
+  button {
+    border: none;
+    outline: none;
+    transition: all 0.2s;
+  }
 
   button.favorite {
     width: fit-content;
     background: none;
-    border: none;
-    outline: none;
-    transition: all 0.2s;
     position: absolute;
     right: 5%;
+    padding: 0;
     top: 1rem;
     :hover {
       transform: scale(1.1);
@@ -448,8 +451,6 @@ export const ResourceCard = styled.div`
 
   button.back {
     background-color: #fffffe;
-    border: none;
-    outline: none;
     font-size: 1rem;
     color: #ff8ba7;
     box-sizing: border-box;
@@ -469,9 +470,9 @@ export const ResourceCard = styled.div`
         padding: 3% 0;
         opacity: 1;
         visibility: visible;
-        height: 100%;
+        height: 85%;
         overflow: auto;
-        margin: 2rem 0;
+        margin: 8% 0;
         scroll-snap-type: y mandatory;
         :before {
           width: 60%;
@@ -506,8 +507,9 @@ export const Button = styled.button`
   outline: none;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  transition: all 500ms ease-in-out;
+  transition: all 0.2s ease-in-out;
   padding: 0.5rem 0.7rem;
+  box-sizing: border-box;
   font-size: 1rem;
   background-color: #ff8ba7;
   border-radius: var(--border-radius);

@@ -16,6 +16,8 @@ yarn start
 
 ![](./src/assets/screenshots/screenshot1.jpeg)
 ![](./src/assets/screenshots/screenshot2.jpeg)
+![](./src/assets/screenshots/screenshot3.jpeg)
+
 
 ## Features
 

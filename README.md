@@ -6,11 +6,11 @@ Frontend for Starwars API
 
 ## Installation
 
+```
 bash
-
 yarn install
-
 yarn start
+```
 
 ## Performance score
 
@@ -20,7 +20,6 @@ yarn start
 
 ![](./src/assets/screenshots/screenshot1.jpeg)
 ![](./src/assets/screenshots/screenshot2.jpeg)
-
 
 ## Features
 
@@ -41,9 +40,10 @@ yarn start
 
 unit-testing for utils done with Jest
 
+```
 bash
-
 yarn test
+```
 
 ## Proposed improvements
 

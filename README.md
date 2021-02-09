@@ -7,7 +7,9 @@ Frontend for Starwars API
 ## Installation
 
 bash
+
 yarn install
+
 yarn start
 
 ## Screenshots
@@ -33,7 +35,9 @@ yarn start
 ## Testing
 
 unit-testing for utils done with Jest
+
 bash
+
 yarn test
 
 ## Proposed improvements

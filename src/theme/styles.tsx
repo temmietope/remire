@@ -3,14 +3,14 @@ import { createGlobalStyle } from 'styled-components'
 import { breakpoints } from './breakpoints'
 
 export const GlobalStyle = createGlobalStyle`
-body{
+body { 
   height: inherit;
   width: 100%;
   height:100%;
   box-sizing: border-box;
   margin: 0 auto;
 }
-body.no-scroll{
+body.no-scroll { 
   overflow-y: hidden;
 }
   `
@@ -94,8 +94,8 @@ export const Loading = styled.div`
   place-content: center;
   box-sizing: border-box;
   img {
-    width: 100%;
-    height: 100%;
+    width: 15rem;
+    height: 15rem;
     object-fit: contain;
     padding: 5%;
     box-sizing: border-box;
@@ -287,8 +287,8 @@ export const ResourcesDiv = styled.div`
     css`
       width: 60%;
       overflow-x: hidden !important;
-       button.favorite {
-        i {
+       button.favorite  { 
+        i  { 
           font-size: 2rem !important;
         }
       }
@@ -350,11 +350,14 @@ export const ResourceCard = styled.div`
     transition: all 0.1s;
     opacity: 0.8;
     pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img,
     svg {
       object-fit: contain;
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: 90%;
       max-width: 100%;
       max-height: 100%;
     }
@@ -486,9 +489,18 @@ export const ResourceCard = styled.div`
       }
       .card__avatar {
         height: 100%;
+        width: 100%;
         position: absolute;
         opacity: 0.1;
         pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          flex-shrink: 0;
+          min-width: 90%;
+          min-height: 90%;
+        }
       }
     `}
   ${(props) =>

@@ -18,6 +18,7 @@ const Navbar = () => (
         href="https://github.com/temmietope/star-wars"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="github"
       >
         <GithubIcon className="github" />
       </a>

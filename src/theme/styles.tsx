@@ -73,10 +73,18 @@ export const Nav = styled.div`
   align-items: center;
   svg {
     width: 5rem;
+    transition: all 0.3s;
     height: 100%;
+    object-fit: contain;
+    :hover {
+      transform: scale(1.05);
+    }
     path {
       fill: #ff8ba7;
     }
+  }
+  .github {
+    width: 2rem;
   }
 `
 

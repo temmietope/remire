@@ -13,6 +13,9 @@ body {
 body.no-scroll { 
   overflow-y: hidden;
 }
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 `
 
 export const LayoutWrapper = styled.div`

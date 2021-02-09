@@ -10,6 +10,7 @@ import { formatDate } from '../utils/formatDate'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as RegularHeart } from '../assets/icons/heart-regular.svg'
 import { ReactComponent as LikedHeart } from '../assets/icons/heart-solid.svg'
+import { ReactComponent as LoaderIcon } from '../assets/icons/starwars-head.svg'
 
 interface Resource {
   resource: Result,
@@ -109,10 +110,7 @@ const ResourceCard: FC<Resource> = ({ resource, quickView }) => {
       )}
       <H3>{cardHeader}</H3>
       <div className="card__avatar">
-        <img
-          src={require('../assets/icons/starwars-head.svg').default}
-          alt="icon"
-        />
+        <LoaderIcon />
       </div>
       <ul className="card__details" ref={dataDiv}>
         {cardData.map(([k, v]) => renderEntry(k, v))}
